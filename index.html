@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#021417">
+  <title>UORT · Estratégia de Marca, Comunicação e Crescimento</title>
+  <meta name="description" content="Apresentação interativa da LOOK Assessoria de Comunicação para a UORT — Ortopedia & Traumatologia.">
+  <link rel="icon" href="assets/brand/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap">
+  <link rel="stylesheet" href="css/app.css">
+  <link rel="stylesheet" href="css/tv.css">
+</head>
+<body>
+  <!-- Gradientes compartilhados pelas lâminas HTML (TV) -->
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+    <defs>
+      <linearGradient id="g-swoosh" x1="0" y1="0" x2="1" y2="1">
+        <stop offset="0" stop-color="#0a5d70"/><stop offset=".55" stop-color="#139fae"/><stop offset="1" stop-color="#6fdfe8"/>
+      </linearGradient>
+      <linearGradient id="g-swoosh-soft" x1="1" y1="0" x2="0" y2="1">
+        <stop offset="0" stop-color="#bff1f4" stop-opacity=".9"/><stop offset="1" stop-color="#e9fafb" stop-opacity="0"/>
+      </linearGradient>
+      <linearGradient id="g-u" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0" stop-color="#ffffff" stop-opacity=".15"/><stop offset=".55" stop-color="#9ff3f7" stop-opacity=".7"/><stop offset="1" stop-color="#35e8f2" stop-opacity="1"/>
+      </linearGradient>
+    </defs>
+  </svg>
+
+  <div id="app">
+    <section class="view view-home" id="home" aria-label="Início"></section>
+    <section class="view view-guide" id="guide" aria-label="Monte sua trilha"></section>
+    <section class="view view-viewer" id="viewer" aria-label="Apresentação"></section>
+    <section class="view view-mural" id="mural" aria-label="Mural antes e depois"></section>
+    <section class="view view-quiz" id="quiz" aria-label="Teste seus conhecimentos"></section>
+  </div>
+
+  <div class="toc" id="toc" role="dialog" aria-modal="true" aria-labelledby="toc-title" hidden></div>
+
+  <dialog class="zoom" id="zoom" aria-label="Lâmina ampliada">
+    <div class="zoom-scroll"><div class="zoom-content"></div></div>
+    <div class="zoom-bar">
+      <button class="ibtn js-zout" aria-label="Diminuir zoom"></button>
+      <button class="ibtn js-zin" aria-label="Aumentar zoom"></button>
+      <button class="ibtn js-zclose" aria-label="Fechar"></button>
+    </div>
+    <p class="zoom-tip">Pinça ou toque duplo para ampliar</p>
+  </dialog>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+  <script src="js/data.js"></script>
+  <script src="js/tv.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>
