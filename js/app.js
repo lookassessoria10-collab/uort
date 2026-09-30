@@ -473,10 +473,10 @@
               <span class="cta">Comparar agora ${icon('arrowR')}</span>
               <span class="viz"><img src="assets/mural/t/antigo-04.jpg" alt=""><img src="assets/mural/t/novo-04.jpg" alt=""></span>
             </a>
-            <a class="feat feat-audio" href="#s/49" data-full>
+            <a class="feat feat-audio" href="#s/52" data-full>
               <span class="k">Mídia offline</span><h3>Ouça a BTN na prática</h3>
               <p>Testemunhais reais veiculados nos boletins de trânsito da BandNews FM e da Jovem Pan FM.</p>
-              <span class="cta">Ouvir na lâmina 49 ${icon('arrowR')}</span>
+              <span class="cta">Ouvir na lâmina 52 ${icon('arrowR')}</span>
               <span class="viz">${Array.from({ length: 16 }, (_, i) => `<i style="--h:${30 + Math.round(Math.abs(Math.sin(i * 1.3)) * 70)}%;--d:${(i * .09).toFixed(2)}s"></i>`).join('')}</span>
             </a>
             <a class="feat feat-quiz" href="#quiz">
@@ -899,8 +899,8 @@
         </div>
         <div class="toc-quick">
           <a class="chip" href="#mural/1">${icon('compare')} Mural antes × depois</a>
-          <button class="chip" data-go="49">${icon('volume')} Áudios da BTN</button>
-          <button class="chip" data-go="56">${icon('tv')} Mapa de inserções na TV</button>
+          <button class="chip" data-go="52">${icon('volume')} Áudios da BTN</button>
+          <button class="chip" data-go="59">${icon('tv')} Mapa de inserções na TV</button>
           <a class="chip" href="#quiz">${icon('quiz')} Teste seus conhecimentos</a>
         </div>
         ${D.chapters.map((c) => `<section class="toc-chap">
