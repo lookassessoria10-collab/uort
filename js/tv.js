@@ -105,8 +105,8 @@ window.TV = (() => {
       </div>
       <div class="tvc-side">
         <div class="hs-card tvc-break">
-          <div><span>Líquido</span><b>${money(sc.liquido)}</b></div>
           <div><span>Produção e envio</span><b>${money(sc.producao)}</b></div>
+          <div><span>${T.station}</span><b>${money(sc.total)}</b></div>
           <div class="tot"><span>Total bruto</span><b>${money(sc.bruto)}</b></div>
         </div>
       </div>
@@ -175,8 +175,8 @@ window.TV = (() => {
     }).join('');
     return `<div class="tvmob">${rows}
       <div class="tvmob-tot">
-        <div><span>Líquido</span><b>${money(sc.liquido)}</b></div>
         <div><span>Produção e envio</span><b>${money(sc.producao)}</b></div>
+        <div><span>${T.station}</span><b>${money(sc.total)}</b></div>
         <div><span>Total bruto</span><b>${money(sc.bruto)}</b></div>
       </div></div>`;
   }
