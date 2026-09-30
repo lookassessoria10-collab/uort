@@ -3,7 +3,7 @@
    k = palavras-chave extras para a busca, key = lâmina essencial (trilha rápida). */
 
 window.DECK = {
-  total: 61,
+  total: 58,
   minutesPerSlide: 0.3,
 
   chapters: [
@@ -13,10 +13,10 @@ window.DECK = {
     { id: 'identidade',    n: '03', title: 'Nova Identidade Visual',    from: 13, to: 16, cover: 14, desc: 'Feed, papelaria, materiais digitais e o novo mural UORT.' },
     { id: 'marketing',     n: '04', title: 'Ações de Marketing',        from: 17, to: 38, cover: 19, desc: 'Campanhas, Onde dói?, Análise de Movimento, Comunidade, B2B e Google.' },
     { id: 'conteudo',      n: '05', title: 'Planejamento de Conteúdo',  from: 39, to: 41, cover: 40, desc: 'O calendário editorial de outubro, semana a semana.' },
-    { id: 'online',        n: '06', title: 'Mídia Online',              from: 42, to: 47, cover: 43, desc: 'Google Ads, Meta Ads e o modelo de página de especialidade.' },
-    { id: 'offline',       n: '07', title: 'Mídia Offline',             from: 48, to: 55, cover: 53, desc: 'Elevadores, BTN no rádio, painéis de LED e cenários de investimento.' },
-    { id: 'tv',            n: '08', title: 'Televisão',                 from: 56, to: 60, cover: 57, desc: 'TV Bahia: dois cenários de inserções, comparativo e programação.' },
-    { id: 'contato',       n: '—',  title: 'Contato',                   from: 61, to: 61, cover: 61, desc: 'LOOK Assessoria de Comunicação.' }
+    { id: 'online',        n: '06', title: 'Mídia Online',              from: 42, to: 44, cover: 43, desc: 'Google Ads, Meta Ads e o modelo de página de especialidade.' },
+    { id: 'offline',       n: '07', title: 'Mídia Offline',             from: 45, to: 52, cover: 50, desc: 'Elevadores, BTN no rádio, painéis de LED e cenários de investimento.' },
+    { id: 'tv',            n: '08', title: 'Televisão',                 from: 53, to: 57, cover: 54, desc: 'TV Bahia: dois cenários de inserções, comparativo e programação.' },
+    { id: 'contato',       n: '—',  title: 'Contato',                   from: 58, to: 58, cover: 58, desc: 'LOOK Assessoria de Comunicação.' }
   ],
 
   slides: {
@@ -63,24 +63,28 @@ window.DECK = {
     41: { t: 'Outubro · Semanas 3 e 4', d: 'Semana 3: coluna, rotina e orientação. Semana 4: movimento em todas as fases da vida, com tour pela UORT e o Caminho das Árvores.', k: 'calendário editorial outubro posts' },
     42: { t: 'Mídia Online', d: 'Abertura do capítulo de mídia online.', divider: true },
     43: { t: 'Mídia Online: Google Ads + Meta Ads', d: 'Google Ads: R$ 5.000/mês para captar pacientes com intenção de busca. Meta Ads: R$ 2.500/mês para fortalecer a marca e alcançar novos públicos. Investimento total: R$ 7.500/mês.', key: true, k: 'investimento verba orçamento preço valor anúncios' },
-    44: { t: 'Página de especialidade: Especialistas em Joelho', d: 'Modelo de landing page para campanhas: diagnóstico preciso e tratamento personalizado, com chamadas para agendar consulta e falar no WhatsApp.', key: true, k: 'landing page site joelho' },
-    45: { t: 'Conviver com a dor virou rotina… mas não deveria', d: 'Dor ao subir escadas, rigidez pela manhã, dificuldade para praticar esportes e limitação no dia a dia. Existe um caminho de volta para o movimento.', k: 'landing page joelho dor' },
-    46: { t: 'Como podemos ajudar · Joelho', d: 'Dor no joelho, lesão ligamentar, menisco e artrose — diagnóstico e tratamento com foco no retorno ao movimento.', k: 'landing page joelho tratamentos' },
-    47: { t: 'Cuidado ortopédico com propósito', d: 'Apresentação do especialista: atendimento humanizado, membro da SBOT, tratamentos modernos e baseados em evidências.', k: 'landing page especialista médico' },
-    48: { t: 'Mídia Offline', d: 'Abertura do capítulo de mídia offline.', divider: true },
-    49: { t: 'Estratégia de mídia offline', d: 'A UORT já tem mídia de elevadores contratada até dezembro. Os novos investimentos complementam essa presença: BTN nos deslocamentos e LED nas principais vias. Casa → deslocamento → cidade.', key: true, k: 'elevadores btn led estratégia' },
-    50: { t: 'O que é a BTN?', d: 'Testemunhais de 10 segundos inseridos nos boletins de trânsito de diferentes rádios: A Tarde FM, BandNews, CBN, GFM, Jovem Pan e Nova Brasil. Ouça dois exemplos do formato.', key: true, k: 'rádio áudio testemunhal boletim trânsito bandnews jovem pan exemplo ouvir' },
-    51: { t: 'Cenário 01 · R$ 5 mil', d: 'BTN para ampliar a frequência da UORT nos deslocamentos: 6 emissoras, 40+ inserções mínimas, testemunhal de 10”, 15 a 20 dias. Investimento: R$ 5.363,60.', key: true, k: 'investimento verba rádio btn preço valor' },
-    52: { t: 'Cenário 02 · R$ 10 mil', d: 'BTN + 3 painéis de LED: R$ 5.363,60 + R$ 5.000,00, com 15 dias de LED em looping de 1min20s. Investimento: R$ 10.363,60.', key: true, k: 'investimento verba led preço valor' },
-    53: { t: '03 painéis de LED em eixos de alto fluxo', d: 'Av. Luís Viana Filho (1.805.400 visualizações/mês), Av. Magalhães Neto (2.249.370) e Rio Vermelho/Juracy (2.437.710). 15 dias de veiculação, investimento conjunto de R$ 5.000,00.', k: 'led outdoor painel paralela' },
-    54: { t: 'Por que estes 03 pontos?', d: 'A seleção combina circulação, retenção de veículos e presença em regiões estratégicas — para a UORT aparecer repetidamente em trajetos relevantes da cidade.', k: 'led pontos' },
-    55: { t: 'Dois caminhos de investimento', d: 'Cenário 5K: BTN (6 rádios, 40+ inserções). Cenário 10K: BTN + 3 LEDs (15 dias, 3 eixos). Elevadores + BTN + LED = mais momentos de contato com a UORT.', key: true, k: 'investimento verba cenários preço valor' },
-    56: { t: 'Televisão', d: 'Abertura da frente de televisão.', divider: true, k: 'tv' },
-    57: { t: 'Cenário TV 01 · R$ 24.680,03', d: '9 inserções de 15” entre 11 e 16 de outubro. Líquido R$ 16.658,42 · produção e envio R$ 3.857,00 · total bruto R$ 24.680,03.', html: 'tvCenario', scenario: 0, key: true, k: 'tv televisão investimento verba preço valor inserções' },
-    58: { t: 'Cenário TV 02 · R$ 34.751,70', d: '14 inserções de 15” entre 11 e 23 de outubro. Líquido R$ 24.715,76 · produção e envio R$ 3.857,00 · total bruto R$ 34.751,70.', html: 'tvCenario', scenario: 1, key: true, k: 'tv televisão investimento verba preço valor inserções' },
-    59: { t: 'Dois caminhos na TV', d: 'Mesma grade de 6 programas nos dois cenários. O Cenário 02 soma +5 inserções — Jornal da Manhã (+2), Globo Esporte (+1), Vale a Pena Ver de Novo (+1) e Panela de Bairro (+1) — e estende a presença até 23 de outubro.', html: 'tvComparativo', key: true, k: 'tv televisão cenários comparação investimento' },
-    60: { t: 'TV Bahia: programação selecionada', d: 'Inserções de 15” em 6 programas da TV Bahia — Jornal da Manhã, Bahia Meio Dia, Globo Esporte, Vale a Pena Ver de Novo, Chef Alto Nível e Panela de Bairro — com descontos negociados de 30% a 45% sobre a tabela.', html: 'tvProgramas', key: true, k: 'tv televisão globo programas tabela desconto' },
-    61: { t: 'Fale com a LOOK', d: 'Um olhar diferente. 71 99154-9332 · lookassessoria.com.br · contato@lookassessoria.com.br · @lookassessoria · Av. Juracy Magalhães Júnior, 300, Rio Vermelho, Salvador.', img: 57, key: true, k: 'contato telefone whatsapp email' }
+    44: { t: 'Página de especialidade: Especialistas em Joelho', d: 'Modelo de landing page para as campanhas, mostrado como uma página de verdade: chamada principal com agendamento e WhatsApp; “Conviver com a dor virou rotina… mas não deveria”; como podemos ajudar (dor no joelho, lesão ligamentar, menisco e artrose); e o especialista — atendimento humanizado, membro da SBOT e tratamentos baseados em evidências.', html: 'page', key: true, k: 'landing page site joelho dor tratamentos menisco artrose lca especialista sbot',
+      page: { src: 'assets/pages/lp-joelho.webp', w: 889, h: 2000, url: 'uort.com.br/especialidades/joelho',
+        sections: [
+          { y: 0,    t: 'Especialistas em Joelho',          d: 'Chamada principal, agendamento e WhatsApp' },
+          { y: 500,  t: 'Conviver com a dor virou rotina',  d: 'O paciente se reconhece nos sintomas' },
+          { y: 1000, t: 'Como podemos ajudar',              d: 'Dor, lesão ligamentar, menisco e artrose' },
+          { y: 1500, t: 'Cuidado ortopédico com propósito', d: 'O especialista e o agendamento' }
+        ] } },
+    45: { t: 'Mídia Offline', d: 'Abertura do capítulo de mídia offline.', divider: true },
+    46: { t: 'Estratégia de mídia offline', d: 'A UORT já tem mídia de elevadores contratada até dezembro. Os novos investimentos complementam essa presença: BTN nos deslocamentos e LED nas principais vias. Casa → deslocamento → cidade.', key: true, k: 'elevadores btn led estratégia' },
+    47: { t: 'O que é a BTN?', d: 'Testemunhais de 10 segundos inseridos nos boletins de trânsito de diferentes rádios: A Tarde FM, BandNews, CBN, GFM, Jovem Pan e Nova Brasil. Ouça dois exemplos do formato.', key: true, k: 'rádio áudio testemunhal boletim trânsito bandnews jovem pan exemplo ouvir' },
+    48: { t: 'Cenário 01 · R$ 5 mil', d: 'BTN para ampliar a frequência da UORT nos deslocamentos: 6 emissoras, 40+ inserções mínimas, testemunhal de 10”, 15 a 20 dias. Investimento: R$ 5.363,60.', key: true, k: 'investimento verba rádio btn preço valor' },
+    49: { t: 'Cenário 02 · R$ 10 mil', d: 'BTN + 3 painéis de LED: R$ 5.363,60 + R$ 5.000,00, com 15 dias de LED em looping de 1min20s. Investimento: R$ 10.363,60.', key: true, k: 'investimento verba led preço valor' },
+    50: { t: '03 painéis de LED em eixos de alto fluxo', d: 'Av. Luís Viana Filho (1.805.400 visualizações/mês), Av. Magalhães Neto (2.249.370) e Rio Vermelho/Juracy (2.437.710). 15 dias de veiculação, investimento conjunto de R$ 5.000,00.', k: 'led outdoor painel paralela' },
+    51: { t: 'Por que estes 03 pontos?', d: 'A seleção combina circulação, retenção de veículos e presença em regiões estratégicas — para a UORT aparecer repetidamente em trajetos relevantes da cidade.', k: 'led pontos' },
+    52: { t: 'Dois caminhos de investimento', d: 'Cenário 5K: BTN (6 rádios, 40+ inserções). Cenário 10K: BTN + 3 LEDs (15 dias, 3 eixos). Elevadores + BTN + LED = mais momentos de contato com a UORT.', key: true, k: 'investimento verba cenários preço valor' },
+    53: { t: 'Televisão', d: 'Abertura da frente de televisão.', divider: true, k: 'tv' },
+    54: { t: 'Cenário TV 01 · R$ 24.680,03', d: '9 inserções de 15” entre 11 e 16 de outubro. Líquido R$ 16.658,42 · produção e envio R$ 3.857,00 · total bruto R$ 24.680,03.', html: 'tvCenario', scenario: 0, key: true, k: 'tv televisão investimento verba preço valor inserções' },
+    55: { t: 'Cenário TV 02 · R$ 34.751,70', d: '14 inserções de 15” entre 11 e 23 de outubro. Líquido R$ 24.715,76 · produção e envio R$ 3.857,00 · total bruto R$ 34.751,70.', html: 'tvCenario', scenario: 1, key: true, k: 'tv televisão investimento verba preço valor inserções' },
+    56: { t: 'Dois caminhos na TV', d: 'Mesma grade de 6 programas nos dois cenários. O Cenário 02 soma +5 inserções — Jornal da Manhã (+2), Globo Esporte (+1), Vale a Pena Ver de Novo (+1) e Panela de Bairro (+1) — e estende a presença até 23 de outubro.', html: 'tvComparativo', key: true, k: 'tv televisão cenários comparação investimento' },
+    57: { t: 'TV Bahia: programação selecionada', d: 'Inserções de 15” em 6 programas da TV Bahia — Jornal da Manhã, Bahia Meio Dia, Globo Esporte, Vale a Pena Ver de Novo, Chef Alto Nível e Panela de Bairro — com descontos negociados de 30% a 45% sobre a tabela.', html: 'tvProgramas', key: true, k: 'tv televisão globo programas tabela desconto' },
+    58: { t: 'Fale com a LOOK', d: 'Um olhar diferente. 71 99154-9332 · lookassessoria.com.br · contato@lookassessoria.com.br · @lookassessoria · Av. Juracy Magalhães Júnior, 300, Rio Vermelho, Salvador.', img: 54, key: true, k: 'contato telefone whatsapp email' }
   },
 
   /* Televisão — guia "TVBA" das planilhas PLANO DE MÍDIA UORT (Cenário 01 = arquivo V2, Cenário 02 = arquivo original) */
@@ -113,7 +117,7 @@ window.DECK = {
       { x: 24.1, y: 36, w: 16, h: 39.6, to: 17, label: 'Ações de marketing' },
       { x: 41.7, y: 36, w: 16, h: 39.6, to: 39, label: 'Planejamento de conteúdo' },
       { x: 59.3, y: 36, w: 16.2, h: 39.6, to: 42, label: 'Mídia online' },
-      { x: 77.1, y: 36, w: 16.2, h: 39.6, to: 48, label: 'Mídia offline' }
+      { x: 77.1, y: 36, w: 16.2, h: 39.6, to: 45, label: 'Mídia offline' }
     ],
     18: [
       { x: 3.8,  y: 40.2, w: 18, h: 46.6, to: 19, label: 'Campanha de marca' },
@@ -134,12 +138,12 @@ window.DECK = {
     31: { type: 'tool' },
     32: { type: 'tool' },
     33: { type: 'tool' },
-    50: { type: 'audio' },
-    51: { type: 'audio', short: true },
-    57: { type: 'tvmap', scenario: 0 },
-    58: { type: 'tvmap', scenario: 1 },
-    60: { type: 'tvprog' },
-    61: { type: 'contact' }
+    47: { type: 'audio' },
+    48: { type: 'audio', short: true },
+    54: { type: 'tvmap', scenario: 0 },
+    55: { type: 'tvmap', scenario: 1 },
+    57: { type: 'tvprog' },
+    58: { type: 'contact' }
   },
 
   /* Ferramenta de análise funcional (botão nas lâminas "Onde dói?" e Análise de Movimento) */
@@ -168,9 +172,9 @@ window.DECK = {
     { id: 'comunidade', label: 'Comunidade no WhatsApp',        from: 34, to: 36, key: [34, 35] },
     { id: 'b2b',        label: 'B2B e Google Business Profile', from: 37, to: 38, key: [37, 38] },
     { id: 'conteudo',   label: 'Conteúdo de outubro',           from: 40, to: 41, key: [40] },
-    { id: 'online',     label: 'Mídia online',                  from: 43, to: 47, key: [43, 44] },
-    { id: 'offline',    label: 'Mídia offline, rádio e LED',    from: 49, to: 55, key: [49, 50, 51, 52, 55] },
-    { id: 'tv',         label: 'Televisão (TV Bahia)',          from: 57, to: 60, key: [59, 60] }
+    { id: 'online',     label: 'Mídia online',                  from: 43, to: 44, key: [43, 44] },
+    { id: 'offline',    label: 'Mídia offline, rádio e LED',    from: 46, to: 52, key: [46, 47, 48, 49, 52] },
+    { id: 'tv',         label: 'Televisão (TV Bahia)',          from: 54, to: 57, key: [56, 57] }
   ],
 
   faq: [
@@ -178,9 +182,9 @@ window.DECK = {
     { q: 'Como funciona a Análise de Movimento?', to: 29 },
     { q: 'O que é a jornada “Onde dói?”', to: 27 },
     { q: 'Quanto será investido em mídia online?', to: 43 },
-    { q: 'O que é a BTN? (ouça os áudios)', to: 50 },
-    { q: 'Quais são os cenários de mídia offline?', to: 55 },
-    { q: 'Como fica a TV Bahia?', to: 60 },
+    { q: 'O que é a BTN? (ouça os áudios)', to: 47 },
+    { q: 'Quais são os cenários de mídia offline?', to: 52 },
+    { q: 'Como fica a TV Bahia?', to: 57 },
     { q: 'Como será a Comunidade no WhatsApp?', to: 34 },
     { q: 'Como fica o conteúdo de outubro?', to: 40 }
   ],
@@ -211,8 +215,8 @@ window.DECK = {
     { q: 'O que a Análise de Movimento UORT NÃO faz?', a: ['Usa a câmera do celular', 'Observa a amplitude do movimento', 'Diz qual lesão a pessoa possui', 'Mostra um resultado visual'], c: 2, why: 'A ferramenta não dá diagnóstico: registra características funcionais como informação complementar.', s: 32 },
     { q: 'Em quais dias a Comunidade UORT recebe conteúdo?', a: ['Segunda, quarta e sexta', 'Terça, quinta e sábado', 'Todos os dias', 'Só aos domingos'], c: 1, why: 'Terça: UORT em 1 minuto. Quinta: conteúdo útil. Sábado: movimento do fim de semana.', s: 35 },
     { q: 'Qual é o investimento mensal total previsto em mídia online?', a: ['R$ 2.500', 'R$ 5.000', 'R$ 7.500', 'R$ 10.000'], c: 2, why: 'Google Ads (R$ 5.000) + Meta Ads (R$ 2.500) = R$ 7.500/mês.', s: 43 },
-    { q: 'Na BTN, a UORT aparece em testemunhais de quantos segundos?', a: ['5 segundos', '10 segundos', '30 segundos', '1 minuto'], c: 1, why: 'Testemunhais de 10 segundos inseridos junto aos boletins de trânsito — ouça os exemplos na lâmina.', s: 50 },
-    { q: 'Qual é a lógica da jornada de contato na mídia offline?', a: ['Casa → Deslocamento → Cidade', 'Cidade → Casa → Trabalho', 'Rádio → TV → Jornal', 'Online → Offline → Online'], c: 0, why: 'Elevadores (casa) + BTN (deslocamento) + LED (cidade).', s: 49 },
-    { q: 'Quantas inserções de 15” na TV Bahia tem o Cenário TV 02?', a: ['6 inserções', '9 inserções', '14 inserções', '31 inserções'], c: 2, why: 'O Cenário 02 tem 14 inserções (11 a 23/out); o Cenário 01 tem 9 (11 a 16/out).', s: 58 }
+    { q: 'Na BTN, a UORT aparece em testemunhais de quantos segundos?', a: ['5 segundos', '10 segundos', '30 segundos', '1 minuto'], c: 1, why: 'Testemunhais de 10 segundos inseridos junto aos boletins de trânsito — ouça os exemplos na lâmina.', s: 47 },
+    { q: 'Qual é a lógica da jornada de contato na mídia offline?', a: ['Casa → Deslocamento → Cidade', 'Cidade → Casa → Trabalho', 'Rádio → TV → Jornal', 'Online → Offline → Online'], c: 0, why: 'Elevadores (casa) + BTN (deslocamento) + LED (cidade).', s: 46 },
+    { q: 'Quantas inserções de 15” na TV Bahia tem o Cenário TV 02?', a: ['6 inserções', '9 inserções', '14 inserções', '31 inserções'], c: 2, why: 'O Cenário 02 tem 14 inserções (11 a 23/out); o Cenário 01 tem 9 (11 a 16/out).', s: 55 }
   ]
 };

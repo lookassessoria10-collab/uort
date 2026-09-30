@@ -59,6 +59,7 @@
     coins: '<ellipse cx="9" cy="7" rx="5.5" ry="2.5"/><path d="M3.5 7v4c0 1.4 2.5 2.5 5.5 2.5s5.5-1.1 5.5-2.5V7M3.5 11v4c0 1.4 2.5 2.5 5.5 2.5"/><circle cx="16.5" cy="16.5" r="4.5"/>',
     tv: '<rect x="3" y="6" width="18" height="12" rx="2"/><path d="M8 21h8M12 18v3M9 2.5l3 3 3-3"/>',
     activity: '<path d="M3 12h4l3-7 4 14 3-7h4"/>',
+    lock: '<rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/>',
     external: '<path d="M14 4h6v6M20 4l-9 9M18 14v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h5"/>'
   };
   const icon = (name, cls = '') => `<svg class="icon ${cls}" viewBox="0 0 24 24" aria-hidden="true">${ICONS[name] || ''}</svg>`;
@@ -72,7 +73,47 @@
   const minutes = (count) => Math.max(1, Math.round(count * D.minutesPerSlide));
   const numbered = D.chapters.filter((c) => /^\d+$/.test(c.n) && c.n !== '00');
 
-  // lâminas HTML (TV): escala automática para qualquer largura
+  /* lâmina "página": landing page rolável dentro de uma janela de navegador (desenhada em 1920×1080) */
+  function pageSlide(s) {
+    const p = s.page;
+    const el = document.createElement('div');
+    el.className = 'hs pg';
+    el.innerHTML = `<svg class="hs-deco" viewBox="0 0 1920 1080" preserveAspectRatio="none" aria-hidden="true">
+        <path d="M0 905C380 1010 760 1062 1180 1080H0Z" fill="#eef9fa"/>
+        <path d="M1490 0C1600 150 1730 252 1920 302V0Z" fill="url(#g-swoosh)"/>
+        <path d="M1350 0C1560 232 1742 362 1920 404" fill="none" stroke="#7fdce4" stroke-width="2.5" opacity=".75"/>
+      </svg>
+      <div class="pg-copy">
+        <div class="hs-label">Mídia online · Landing page</div>
+        <h2 class="pg-h">Página de<br><em>especialidade</em></h2>
+        <div class="hs-bar"></div>
+        <p class="pg-sub">Modelo de página para as campanhas: quem clica no anúncio chega a uma página feita para a sua dor, com tratamentos, especialista e agendamento.</p>
+        <ol class="pg-secs">${p.sections.map((x, i) => `<li><button type="button" class="pg-sec${i ? '' : ' on'}" data-y="${x.y}"><span class="n">${pad(i + 1)}</span><span><b>${esc(x.t)}</b><small>${esc(x.d)}</small></span></button></li>`).join('')}</ol>
+        <p class="pg-tip">${icon('hand')} Role a página na janela ao lado</p>
+      </div>
+      <div class="pg-win">
+        <div class="pg-bar"><i></i><i></i><i></i><span class="pg-url">${icon('lock')}${esc(p.url)}</span></div>
+        <div class="pg-view" tabindex="0" aria-label="${esc(s.t)} — role para ver a página"><img src="${p.src}" width="${p.w}" height="${p.h}" alt="${esc(s.d)}" draggable="false"></div>
+        <div class="pg-cue">${icon('chevD')} Role para ver a página</div>
+      </div>`;
+    const view = $('.pg-view', el), img = $('img', view), secs = $$('.pg-sec', el);
+    const k = () => img.offsetHeight / p.h;   // escala da imagem dentro da janela
+    el.addEventListener('click', (e) => {
+      const b = e.target.closest('.pg-sec');
+      if (b) view.scrollTo({ top: +b.dataset.y * k(), behavior: reduced ? 'auto' : 'smooth' });
+    });
+    view.addEventListener('scroll', () => {
+      el.classList.toggle('scrolled', view.scrollTop > 30);
+      const at = view.scrollTop + view.clientHeight * .35;
+      let cur = 0; p.sections.forEach((x, i) => { if (x.y * k() <= at) cur = i; });
+      if (view.scrollTop + view.clientHeight >= view.scrollHeight - 2) cur = p.sections.length - 1;
+      secs.forEach((b, i) => b.classList.toggle('on', i === cur));
+    }, { passive: true });
+    return el;
+  }
+  const renderHs = (s) => (s.html === 'page' ? pageSlide(s) : TV.render(s));
+
+  // lâminas HTML (TV e página): escala automática para qualquer largura
   const ro = new ResizeObserver((entries) => {
     for (const e of entries) if (e.contentRect.width) e.target.style.setProperty('--s', e.contentRect.width / 1920);
   });
@@ -80,7 +121,7 @@
     const host = document.createElement('div');
     host.className = 'hs-host';
     if (width) host.style.setProperty('--s', width / 1920);
-    host.append(TV.render(S(n)));
+    host.append(renderHs(S(n)));
     ro.observe(host);
     return host;
   }
@@ -90,7 +131,8 @@
   function mountMinis(root) {
     $$('[data-hs]', root).forEach((el) => {
       if (el.firstChild) return;
-      el.append(TV.render(S(+el.dataset.hs)));
+      el.append(renderHs(S(+el.dataset.hs)));
+      el.inert = true;   // miniatura: só imagem, sem foco nem cliques internos
       ro.observe(el);
     });
   }
@@ -431,10 +473,10 @@
               <span class="cta">Comparar agora ${icon('arrowR')}</span>
               <span class="viz"><img src="assets/mural/t/antigo-04.jpg" alt=""><img src="assets/mural/t/novo-04.jpg" alt=""></span>
             </a>
-            <a class="feat feat-audio" href="#s/50" data-full>
+            <a class="feat feat-audio" href="#s/47" data-full>
               <span class="k">Mídia offline</span><h3>Ouça a BTN na prática</h3>
               <p>Testemunhais reais veiculados nos boletins de trânsito da BandNews FM e da Jovem Pan FM.</p>
-              <span class="cta">Ouvir na lâmina 50 ${icon('arrowR')}</span>
+              <span class="cta">Ouvir na lâmina 47 ${icon('arrowR')}</span>
               <span class="viz">${Array.from({ length: 16 }, (_, i) => `<i style="--h:${30 + Math.round(Math.abs(Math.sin(i * 1.3)) * 70)}%;--d:${(i * .09).toFixed(2)}s"></i>`).join('')}</span>
             </a>
             <a class="feat feat-quiz" href="#quiz">
@@ -679,6 +721,7 @@
       let extra = '';
       if (links) extra += `<div class="vi-block vi-links"><p class="lbl">Ir direto para</p>${links.map((l) => `<a class="vi-link" href="#s/${l.to}" data-go="${l.to}">${icon('arrowR')} ${esc(l.label)} ${icon('chevR')}</a>`).join('')}</div>`;
       if (x.type === 'mural') extra += `<div class="vi-block"><a class="vi-cta" href="#mural/1"><span class="ic">${icon('compare')}</span><span><b>Novo mural UORT</b><small>Compare o mural antigo com o novo</small></span>${icon('arrowR')}</a></div>`;
+      if (s.page) extra += `<div class="vi-block"><p class="lbl">A página completa · role para ver</p><div class="vi-page"><div class="bar"><i></i><i></i><i></i><span>${icon('lock')}${esc(s.page.url)}</span></div><img src="${s.page.src}" width="${s.page.w}" height="${s.page.h}" alt="${esc(s.d)}" loading="lazy"></div></div>`;
       if (x.type === 'tool') extra += `<div class="vi-block">${toolCta('vi-cta')}</div>`;
       if (x.type === 'audio') extra += `<div class="vi-block">${audio.block()}</div>`;
       if (x.type === 'tvmap') extra += `<div class="vi-block"><p class="lbl">Mapa de inserções · Outubro</p>${TV.mobileMap(x.scenario)}</div>`;
@@ -696,6 +739,7 @@
       const x = D.extras[n] || {};
       let html = '';
       if (D.links[n]) html = `<span class="pill-hint">${icon('hand')} Clique nos cards para ir direto ao tema</span>`;
+      else if (S(n).page) html = `<span class="pill-hint">${icon('hand')} Role a página na janela · clique numa seção para ir direto a ela</span>`;
       else if (x.type === 'mural') html = `<a class="btn-pill glow" href="#mural/1">${icon('compare')} Comparar mural: antes × depois ${icon('arrowR')}</a>`;
       else if (x.type === 'tool') html = `<a class="btn-pill glow" href="${D.tool.url}"${ext(D.tool.url)}>${icon('activity')} ${esc(D.tool.label)} ${icon('external')}</a>`;
       else if (x.type === 'audio') html = `<button class="btn-pill glow js-pop" aria-expanded="false">${icon('volume')} ${x.short ? 'Ouvir um testemunhal da BTN' : 'Ouvir exemplos de testemunhal'}</button>
@@ -841,6 +885,7 @@
       const badge = x.type === 'audio' && !x.short ? `<span class="badge">${icon('volume')} Áudio</span>`
         : x.type === 'mural' ? `<span class="badge">${icon('compare')} Mural</span>`
           : x.type === 'tool' ? `<span class="badge">${icon('activity')} Ferramenta</span>`
+            : s.page ? `<span class="badge">${icon('globe')} Página</span>`
           : D.links[n] ? `<span class="badge">${icon('hand')} Interativa</span>` : '';
       const text = norm([s.t, s.d, s.k || '', chapterOf(n).title, 'lamina ' + n].join(' '));
       return `<button class="toc-item" data-go="${n}" data-text="${esc(text)}"><span class="th">${thumb(n)}<span class="num">${pad(n)}</span>${badge}</span><span class="tt">${esc(s.t)}</span></button>`;
@@ -854,8 +899,8 @@
         </div>
         <div class="toc-quick">
           <a class="chip" href="#mural/1">${icon('compare')} Mural antes × depois</a>
-          <button class="chip" data-go="50">${icon('volume')} Áudios da BTN</button>
-          <button class="chip" data-go="57">${icon('tv')} Mapa de inserções na TV</button>
+          <button class="chip" data-go="47">${icon('volume')} Áudios da BTN</button>
+          <button class="chip" data-go="54">${icon('tv')} Mapa de inserções na TV</button>
           <a class="chip" href="#quiz">${icon('quiz')} Teste seus conhecimentos</a>
         </div>
         ${D.chapters.map((c) => `<section class="toc-chap">

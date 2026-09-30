@@ -8,12 +8,14 @@ Site estático (HTML, CSS e JavaScript puros, sem build e sem dependências), ot
 
 - **Início** com atalhos: trilha personalizada, apresentação completa, sumário, mural e quiz
 - **“O que você quer saber?”** — 2 perguntas montam uma trilha só com as lâminas de interesse
-- **Apresentação** com as 61 lâminas, transições, barra de progresso por capítulo, zoom com pinça, navegação por teclado e gestos
+- **Apresentação** com as 58 lâminas, transições, barra de progresso por capítulo, zoom com pinça, navegação por teclado e gestos
 - **Cards clicáveis** nas lâminas 12 e 18, que levam direto a cada tema
 - **Sumário com busca** (sem diferenciar acentos)
 - **Mural antes × depois** (lâmina 16): comparação deslizante ou lado a lado das 7 páginas
-- **Áudios de exemplo da BTN** (lâmina 50): testemunhais da BandNews FM e da Jovem Pan FM
-- **Televisão** (lâminas 57–60): dois cenários com mapa de inserções, comparativo e programação TV Bahia
+- **Ferramenta de análise funcional** (lâminas 27–33): botão que abre a Análise de Movimento UORT
+- **Página de especialidade** (lâmina 44): a landing page inteira, rolável dentro de uma janela de navegador
+- **Áudios de exemplo da BTN** (lâmina 47): testemunhais da BandNews FM e da Jovem Pan FM
+- **Televisão** (lâminas 54–57): dois cenários com mapa de inserções, comparativo e programação TV Bahia
 - **Teste de conhecimentos** com link para a lâmina de cada resposta
 
 ## Como abrir no computador
@@ -48,6 +50,7 @@ assets/slides-t/     miniaturas
 assets/mural/        páginas do mural antigo e novo
 assets/audio/        exemplos de testemunhal BTN
 assets/brand/        logos UORT e LOOK
+assets/pages/        páginas inteiras exibidas com rolagem (landing page)
 servidor.ps1         servidor local em PowerShell
 ```
 

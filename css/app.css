@@ -563,6 +563,49 @@ h1, h2, h3, p { margin: 0; }
 /* miniatura de lâmina HTML */
 .hs-host { position: absolute; inset: 0; overflow: hidden; background: #fff; }
 
+/* lâmina "página" (landing page rolável) — medidas no quadro de 1920×1080 */
+.pg .icon { width: 24px; height: 24px; }
+.pg-copy { position: absolute; left: 100px; top: 92px; width: 700px; }
+.pg-h { margin: 26px 0 0; font: 800 78px/1.02 'Montserrat', sans-serif; letter-spacing: -.02em; color: var(--tv-navy); }
+.pg-h em { font-style: normal; color: var(--tv-teal); }
+.pg-sub { margin: 26px 0 0; font-size: 25px; line-height: 1.4; color: var(--tv-text); }
+.pg-secs { list-style: none; margin: 34px 0 0; padding: 0; display: grid; gap: 14px; }
+.pg-sec {
+  width: 100%; display: flex; align-items: center; gap: 20px; padding: 16px 22px; border-radius: 20px; cursor: pointer; text-align: left;
+  font: inherit; color: inherit; background: #fff; border: 2px solid var(--tv-line); transition: background .25s, border-color .25s, box-shadow .25s;
+}
+.pg-sec .n { width: 48px; height: 48px; border-radius: 50%; flex: none; display: grid; place-items: center; font: 800 18px/1 'Montserrat', sans-serif; color: var(--tv-teal); background: var(--tv-mist); transition: background .25s, color .25s; }
+.pg-sec b { display: block; font: 700 22px/1.2 'Montserrat', sans-serif; color: var(--tv-navy); }
+.pg-sec small { display: block; margin-top: 5px; font-size: 17px; color: #5a6b7b; }
+.pg-sec:hover, .pg-sec.on { border-color: #86d6dc; background: #f1fbfc; box-shadow: 0 14px 30px -20px rgba(11, 127, 134, .7); }
+.pg-sec.on .n { background: var(--tv-teal); color: #fff; }
+.pg-tip { display: flex; align-items: center; gap: 10px; margin: 26px 0 0; font: 600 18px/1.2 'Montserrat', sans-serif; color: var(--tv-teal-2); }
+.pg-win { position: absolute; left: 880px; top: 56px; width: 940px; height: 968px; display: flex; flex-direction: column; overflow: hidden; border-radius: 26px; background: #fff; box-shadow: 0 44px 90px -34px rgba(12, 29, 62, .45), 0 0 0 1px rgba(12, 29, 62, .07); }
+.pg-bar { flex: none; height: 58px; display: flex; align-items: center; gap: 10px; padding: 0 22px; background: #f1f5f7; border-bottom: 1px solid #e2eaed; }
+.pg-bar i { width: 14px; height: 14px; border-radius: 50%; background: #ff6159; }
+.pg-bar i:nth-child(2) { background: #ffbd2e; }
+.pg-bar i:nth-child(3) { background: #28c941; }
+.pg-url { flex: 1; height: 36px; margin-left: 20px; display: flex; align-items: center; gap: 8px; padding: 0 16px; border-radius: 18px; background: #fff; font: 500 17px/1 'Plus Jakarta Sans', sans-serif; color: #5a6b7b; }
+.pg-url .icon { width: 16px; height: 16px; color: var(--tv-teal); }
+.pg-view { flex: 1; overflow-y: auto; overscroll-behavior: contain; outline: 0; scrollbar-width: thin; scrollbar-color: #9fd9de transparent; }
+.pg-view img { display: block; width: 100%; height: auto; user-select: none; }
+.pg-cue {
+  position: absolute; left: 50%; bottom: 28px; display: inline-flex; align-items: center; gap: 8px; padding: 12px 22px; border-radius: 999px; pointer-events: none;
+  background: rgba(12, 29, 62, .84); color: #fff; font: 600 17px/1 'Montserrat', sans-serif; transform: translateX(-50%); transition: opacity .3s; animation: pgCue 1.8s ease-in-out infinite;
+}
+.pg.scrolled .pg-cue { opacity: 0; }
+@keyframes pgCue { 50% { transform: translate(-50%, -8px); } }
+
+/* página completa no celular (abaixo da lâmina) */
+.vi-page { overflow: hidden; border-radius: 16px; background: #fff; box-shadow: 0 18px 40px -22px rgba(0, 0, 0, .8); }
+.vi-page .bar { display: flex; align-items: center; gap: 6px; padding: 9px 12px; background: #eef3f5; }
+.vi-page .bar i { width: 9px; height: 9px; border-radius: 50%; background: #ff6159; }
+.vi-page .bar i:nth-child(2) { background: #ffbd2e; }
+.vi-page .bar i:nth-child(3) { background: #28c941; }
+.vi-page .bar span { flex: 1; min-width: 0; margin-left: 8px; display: flex; align-items: center; gap: 6px; padding: 5px 10px; border-radius: 12px; background: #fff; font-size: 12px; color: #5a6b7b; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.vi-page .bar .icon { width: 13px; height: 13px; color: #0b7f86; }
+.vi-page img { display: block; width: 100%; height: auto; }
+
 /* ==========================================================================
    MURAL — ANTES × DEPOIS
    ========================================================================== */
