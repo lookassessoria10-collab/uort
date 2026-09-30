@@ -127,41 +127,40 @@ window.TV = (() => {
   }
 
   function comparativo() {
-    const [a, b] = T.scenarios;
-    const days = []; for (let d = 10; d <= 24; d++) days.push(d);
+    const all = T.scenarios, stations = [...new Set(all.map(stOf))];
+    const lo = Math.min(...all.map((sc) => span(sc)[0])), hi = Math.max(...all.map((sc) => span(sc)[1]));
+    const days = []; for (let d = lo - 1; d <= hi + 1; d++) days.push(d);
     const card = (sc) => {
-      const pd = perDay(sc);
-      return `<div class="hs-card tvx-card">
+      const pd = perDay(sc), w = words(sc), progs = progsOf(sc);
+      return `<div class="hs-card tvx-card${sc.merchan ? ' mc' : ''}">
         <span class="tvx-pill">${sc.label}</span>
-        <div class="tvx-big"><span>${count(sc)}</span> inserções</div>
+        <span class="tvx-st">${stOf(sc)} · ${sc.merchan ? 'merchandising' : 'inserções'} de ${fmtOf(sc)}</span>
+        <div class="tvx-big"><span>${count(sc)}</span> ${sc.merchan ? 'ações' : 'inserções'}</div>
         <div class="tvx-lines">
-          <span>${T.programs.length} programas · ${sc.period}</span>
-          <span>${T.station}: <b>${money(sc.total)}</b></span>
-          <span>Total bruto: <b>${money(sc.bruto)}</b></span>
+          <span>${progs.length} programa${progs.length > 1 ? 's' : ''} · ${sc.period}</span>
+          <span>${stOf(sc)}: <b>${money(sc.total)}</b></span>
         </div>
-        <div class="tvx-cap"><span>Inserções por dia</span><span>Outubro</span></div>
-        <div class="tvx-spark">${days.map((d) => `<i class="${pd[d] ? 'h' + Math.min(pd[d], 2) : ''}"></i>`).join('')}</div>
-        <div class="tvx-days">${days.map((d) => `<span class="${pd[d] ? 'on' : ''}">${d}</span>`).join('')}</div>
+        <div class="tvx-cap"><span>${sc.merchan ? 'Ações' : 'Inserções'} por dia</span><span>Outubro</span></div>
+        <div class="tvx-spark" style="--n:${days.length}">${days.map((d) => `<i class="${pd[d] ? 'h' + Math.min(pd[d], 2) : ''}"></i>`).join('')}</div>
+        <div class="tvx-days" style="--n:${days.length}">${days.map((d) => `<span class="${pd[d] ? 'on' : ''}">${d}</span>`).join('')}</div>
+        <div class="tvx-total"><small>${sc.brutoLabel || 'Total bruto'}</small><b>${money(sc.bruto)}</b></div>
       </div>`;
     };
-    const diffs = T.programs
-      .map((p) => ({ p, d: (b.days[p.code] || []).length - (a.days[p.code] || []).length }))
-      .filter((x) => x.d > 0)
-      .map((x) => `${x.p.name} (+${x.d})`);
-    const extra = count(b) - count(a);
-    const lastB = span(b)[1];
+    const num = ['Um', 'Dois', 'Três', 'Quatro', 'Cinco', 'Seis'][all.length - 1] || all.length;
+    const byStation = stations.map((st) => {
+      const idx = all.map((sc, i) => (stOf(sc) === st ? i : -1)).filter((i) => i >= 0);
+      const names = idx.map((i) => all[i].label.replace(/^Cenário TV /, '')).join(idx.length > 2 ? ', ' : ' e ').replace(/, (\d+)$/, ' e $1');
+      return `<b>${st}</b> no${idx.length > 1 ? 's' : ''} cenário${idx.length > 1 ? 's' : ''} ${names}`;
+    });
     return `${deco}<div class="hs-pad">
-      ${label}
-      <h2 class="hs-h xl">Dois caminhos<br><em>na televisão</em></h2>
+      ${labelOf(stations.join(' e '))}
+      <h2 class="hs-h">${num} caminhos <span class="sep">|</span> <em>na TV</em></h2>
+      <div class="hs-bar"></div>
+      <p class="hs-sub">Compare os cenários: emissora, formato, frequência, período e investimento.</p>
     </div>
-    <div class="tvx-cards">${card(a)}${card(b)}</div>
-    <div class="tvx-screen">
-      <div class="tv-body"><div class="tv-glass"><span class="tv-live">${T.station.toUpperCase()}</span><span class="tv-badge">${T.format}</span><img src="assets/brand/uort-white.png" alt=""></div></div>
-      <div class="tv-stand"></div>
-      <div class="cap">Mesma grade · ${T.programs.length} programas</div>
-    </div>
-    <div class="hs-note">${ic('plus')}<span><b>+${extra} inserções no Cenário 02:</b> ${diffs.join(' · ')} — presença estendida até ${lastB}/out.</span></div>
-    ${foot}`;
+    <div class="tvx-cards" style="--cols:${all.length}">${all.map(card).join('')}</div>
+    <div class="hs-note">${ic('layers')}<span>${byStation.join(' · ')} — inserções de ${[...new Set(all.filter((sc) => !sc.merchan).map(fmtOf))].join(' e ')} e merchandising de ${[...new Set(all.filter((sc) => sc.merchan).map(fmtOf))].join(' e ')}.</span></div>
+    ${footOf(stations.join(' · '))}`;
   }
 
   function render(slide) {

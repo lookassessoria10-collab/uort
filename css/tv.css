@@ -109,34 +109,27 @@
 .tvc-break .tot b { font-size: 27px; font-weight: 800; }
 
 /* ---- Comparativo ---- */
-.tvx-cards { position: absolute; left: 100px; top: 348px; width: 1210px; display: grid; grid-template-columns: 1fr 1fr; gap: 30px; }
-.tvx-card { position: relative; display: flex; flex-direction: column; align-items: center; text-align: center; padding: 28px 34px 24px; }
-.tvx-pill { padding: 12px 22px; border-radius: 999px; background: var(--tv-mist); color: var(--tv-teal); font: 800 17px/1 'Montserrat', sans-serif; letter-spacing: .16em; text-transform: uppercase; }
-.tvx-card .hs-circle { margin-top: 22px; }
-.tvx-big { margin-top: 18px; font: 800 46px/1 'Montserrat', sans-serif; color: var(--tv-navy); text-transform: uppercase; }
+.tvx-cards { position: absolute; left: 100px; right: 100px; top: 318px; display: grid; grid-template-columns: repeat(var(--cols, 2), 1fr); gap: 24px; }
+.tvx-card { position: relative; display: flex; flex-direction: column; align-items: center; text-align: center; padding: 26px 24px 24px; }
+.tvx-card.mc { background: linear-gradient(180deg, #f3fbfc, #fff); }
+.tvx-pill { padding: 11px 20px; border-radius: 999px; background: var(--tv-mist); color: var(--tv-teal); font: 800 16px/1 'Montserrat', sans-serif; letter-spacing: .16em; text-transform: uppercase; }
+.tvx-card.mc .tvx-pill { background: var(--tv-teal); color: #fff; }
+.tvx-st { margin-top: 14px; font: 700 15px/1.2 'Montserrat', sans-serif; letter-spacing: .1em; text-transform: uppercase; color: var(--tv-teal-2); }
+.tvx-big { margin-top: 16px; font: 800 44px/1 'Montserrat', sans-serif; color: var(--tv-navy); text-transform: uppercase; }
 .tvx-big span { color: var(--tv-orange); }
-.tvx-lines { margin-top: 14px; display: grid; gap: 7px; font-size: 21px; color: #506273; }
+.tvx-lines { margin-top: 14px; display: grid; gap: 6px; font-size: 19px; color: #506273; }
 .tvx-lines b { color: var(--tv-navy); }
-.tvx-spark { margin-top: 20px; width: 100%; display: grid; grid-template-columns: repeat(15, 1fr); gap: 6px; align-items: end; height: 70px; padding: 0 6px; border-bottom: 2px solid #e2eff1; }
-.tvx-spark i { display: block; border-radius: 6px 6px 2px 2px; background: #edf5f6; height: 8px; }
-.tvx-spark i.h1 { height: 32px; background: linear-gradient(#35c9d4, var(--tv-teal)); }
-.tvx-spark i.h2 { height: 64px; background: linear-gradient(#35c9d4, var(--tv-teal)); }
-.tvx-cap { width: 100%; margin-top: 18px; display: flex; justify-content: space-between; font: 700 13px/1 'Montserrat', sans-serif; letter-spacing: .18em; text-transform: uppercase; color: var(--tv-teal-2); }
-.tvx-days { width: 100%; display: grid; grid-template-columns: repeat(15, 1fr); gap: 6px; padding: 8px 6px 0; font: 600 12px/1 'Montserrat', sans-serif; color: #93a3ad; }
+.tvx-spark { margin-top: 12px; width: 100%; display: grid; grid-template-columns: repeat(var(--n, 15), 1fr); gap: 4px; align-items: end; height: 60px; padding: 0 4px; border-bottom: 2px solid #e2eff1; }
+.tvx-spark i { display: block; border-radius: 5px 5px 2px 2px; background: #edf5f6; height: 7px; }
+.tvx-spark i.h1 { height: 28px; background: linear-gradient(#35c9d4, var(--tv-teal)); }
+.tvx-spark i.h2 { height: 56px; background: linear-gradient(#35c9d4, var(--tv-teal)); }
+.tvx-cap { width: 100%; margin-top: 20px; display: flex; justify-content: space-between; font: 700 12px/1 'Montserrat', sans-serif; letter-spacing: .16em; text-transform: uppercase; color: var(--tv-teal-2); }
+.tvx-days { width: 100%; display: grid; grid-template-columns: repeat(var(--n, 15), 1fr); gap: 4px; padding: 7px 4px 0; font: 600 11px/1 'Montserrat', sans-serif; color: #93a3ad; }
 .tvx-days span.on { color: var(--tv-teal); font-weight: 800; }
+.tvx-total { width: 100%; margin-top: 18px; padding-top: 16px; border-top: 2px solid #e2eff1; display: flex; flex-direction: column; align-items: center; gap: 8px; }
+.tvx-total small { font: 800 14px/1 'Montserrat', sans-serif; letter-spacing: .14em; text-transform: uppercase; color: var(--tv-teal); }
+.tvx-total b { font: 800 32px/1 'Montserrat', sans-serif; color: var(--tv-navy); font-variant-numeric: tabular-nums; white-space: nowrap; }
 
-.tvx-screen { position: absolute; left: 1350px; top: 380px; width: 470px; }
-.tvx-screen::before { content: ""; position: absolute; inset: -40px -30px -60px; background: radial-gradient(closest-side, rgba(53, 201, 212, .35), transparent 70%); filter: blur(10px); }
-.tv-body { position: relative; padding: 14px; border-radius: 24px; background: linear-gradient(160deg, #1d2d38, #0a141b); box-shadow: 0 40px 70px -30px rgba(3, 30, 40, .7), inset 0 0 0 2px rgba(255, 255, 255, .06); }
-.tv-glass { position: relative; aspect-ratio: 16 / 9; border-radius: 12px; overflow: hidden; display: grid; place-items: center; background: radial-gradient(90% 90% at 70% 20%, #139fae 0%, #0a5d70 45%, #04303c 100%); }
-.tv-glass::before { content: ""; position: absolute; inset: 0; background: linear-gradient(115deg, rgba(255, 255, 255, .22) 0%, rgba(255, 255, 255, 0) 38%); }
-.tv-glass::after { content: ""; position: absolute; left: -10%; right: -10%; bottom: -30%; height: 70%; border-radius: 50%; border-top: 3px solid rgba(127, 246, 255, .55); filter: drop-shadow(0 0 10px rgba(127, 246, 255, .8)); }
-.tv-glass img { position: relative; z-index: 1; width: 56%; height: auto; filter: drop-shadow(0 6px 16px rgba(0, 0, 0, .35)); }
-.tv-badge { position: absolute; z-index: 2; right: 14px; top: 14px; padding: 7px 12px; border-radius: 9px; background: #fff; color: var(--tv-teal); font: 800 18px/1 'Montserrat', sans-serif; }
-.tv-live { position: absolute; z-index: 2; left: 14px; top: 14px; display: inline-flex; align-items: center; gap: 8px; padding: 7px 11px; border-radius: 9px; background: rgba(2, 20, 23, .55); color: #fff; font: 700 13px/1 'Montserrat', sans-serif; letter-spacing: .14em; }
-.tv-live::before { content: ""; width: 9px; height: 9px; border-radius: 50%; background: #ff5a4a; box-shadow: 0 0 8px #ff5a4a; }
-.tv-stand { position: relative; width: 160px; height: 46px; margin: 0 auto; background: linear-gradient(#1a2a34, #0c171e); clip-path: polygon(38% 0, 62% 0, 70% 70%, 100% 80%, 100% 100%, 0 100%, 0 80%, 30% 70%); }
-.tvx-screen .cap { position: relative; margin-top: 26px; text-align: center; font: 700 17px/1.3 'Montserrat', sans-serif; letter-spacing: .2em; text-transform: uppercase; color: var(--tv-teal); }
 
 /* ---- Versão em texto (celular) ---- */
 .tvmob { display: grid; gap: 8px; }
