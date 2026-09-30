@@ -8,12 +8,12 @@ Site estático (HTML, CSS e JavaScript puros, sem build e sem dependências), ot
 
 - **Início** com atalhos: trilha personalizada, apresentação completa, sumário, mural e quiz
 - **“O que você quer saber?”** — 2 perguntas montam uma trilha só com as lâminas de interesse
-- **Apresentação** com as 57 lâminas, transições, barra de progresso por capítulo, zoom com pinça, navegação por teclado e gestos
+- **Apresentação** com as 61 lâminas, transições, barra de progresso por capítulo, zoom com pinça, navegação por teclado e gestos
 - **Cards clicáveis** nas lâminas 12 e 18, que levam direto a cada tema
 - **Sumário com busca** (sem diferenciar acentos)
 - **Mural antes × depois** (lâmina 16): comparação deslizante ou lado a lado das 7 páginas
-- **Áudios de exemplo da BTN** (lâmina 46): testemunhais da BandNews FM e da Jovem Pan FM
-- **Televisão** (lâminas 53–56): programação TV Bahia, dois cenários com mapa de inserções e comparativo
+- **Áudios de exemplo da BTN** (lâmina 50): testemunhais da BandNews FM e da Jovem Pan FM
+- **Televisão** (lâminas 57–60): dois cenários com mapa de inserções, comparativo e programação TV Bahia
 - **Teste de conhecimentos** com link para a lâmina de cada resposta
 
 ## Como abrir no computador

@@ -57,7 +57,9 @@
     pen: '<path d="M12 3 18 10 12 21 6 10z"/><circle cx="12" cy="11" r="1.8"/><path d="M12 3v6.2"/>',
     megaphone: '<path d="M3.5 10.5v3a1 1 0 0 0 1 1H7l7.5 4.5v-14L7 9.5H4.5a1 1 0 0 0-1 1z"/><path d="M18 9a4 4 0 0 1 0 6M7.5 14.5l1.2 5H11l-1-4.6"/>',
     coins: '<ellipse cx="9" cy="7" rx="5.5" ry="2.5"/><path d="M3.5 7v4c0 1.4 2.5 2.5 5.5 2.5s5.5-1.1 5.5-2.5V7M3.5 11v4c0 1.4 2.5 2.5 5.5 2.5"/><circle cx="16.5" cy="16.5" r="4.5"/>',
-    tv: '<rect x="3" y="6" width="18" height="12" rx="2"/><path d="M8 21h8M12 18v3M9 2.5l3 3 3-3"/>'
+    tv: '<rect x="3" y="6" width="18" height="12" rx="2"/><path d="M8 21h8M12 18v3M9 2.5l3 3 3-3"/>',
+    activity: '<path d="M3 12h4l3-7 4 14 3-7h4"/>',
+    external: '<path d="M14 4h6v6M20 4l-9 9M18 14v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h5"/>'
   };
   const icon = (name, cls = '') => `<svg class="icon ${cls}" viewBox="0 0 24 24" aria-hidden="true">${ICONS[name] || ''}</svg>`;
 
@@ -107,6 +109,8 @@
     { icon: 'mail', label: 'E-mail', text: 'contato@lookassessoria.com.br', href: 'mailto:contato@lookassessoria.com.br' }
   ];
   const ext = (href) => href.startsWith('http') ? ' target="_blank" rel="noopener"' : '';
+  // botão da ferramenta de análise funcional (lâminas "Onde dói?" e Análise de Movimento)
+  const toolCta = (cls) => `<a class="${cls}" href="${D.tool.url}"${ext(D.tool.url)}><span class="ic">${icon('activity')}</span><span><b>${esc(D.tool.title)}</b><small>${esc(D.tool.label)}</small></span>${icon('external')}</a>`;
 
   /* ==========================================================================
      ÁUDIO
@@ -427,10 +431,10 @@
               <span class="cta">Comparar agora ${icon('arrowR')}</span>
               <span class="viz"><img src="assets/mural/t/antigo-04.jpg" alt=""><img src="assets/mural/t/novo-04.jpg" alt=""></span>
             </a>
-            <a class="feat feat-audio" href="#s/46" data-full>
+            <a class="feat feat-audio" href="#s/50" data-full>
               <span class="k">Mídia offline</span><h3>Ouça a BTN na prática</h3>
               <p>Testemunhais reais veiculados nos boletins de trânsito da BandNews FM e da Jovem Pan FM.</p>
-              <span class="cta">Ouvir na lâmina 46 ${icon('arrowR')}</span>
+              <span class="cta">Ouvir na lâmina 50 ${icon('arrowR')}</span>
               <span class="viz">${Array.from({ length: 16 }, (_, i) => `<i style="--h:${30 + Math.round(Math.abs(Math.sin(i * 1.3)) * 70)}%;--d:${(i * .09).toFixed(2)}s"></i>`).join('')}</span>
             </a>
             <a class="feat feat-quiz" href="#quiz">
@@ -664,7 +668,8 @@
     function overlay(n) {
       const x = D.extras[n];
       over.innerHTML = (D.links[n] || []).map((l) => `<a class="hs-link" href="#s/${l.to}" data-go="${l.to}" style="left:${l.x}%;top:${l.y}%;width:${l.w}%;height:${l.h}%" aria-label="Ir para ${esc(l.label)}"><span>${esc(l.label)} ${icon('arrowR')}</span></a>`).join('')
-        + (x && x.type === 'mural' ? `<a class="hs-cta" href="#mural/1"><span class="ic">${icon('compare')}</span><span><b>Novo mural UORT</b><small>Compare antes × depois</small></span>${icon('arrowR')}</a>` : '');
+        + (x && x.type === 'mural' ? `<a class="hs-cta" href="#mural/1"><span class="ic">${icon('compare')}</span><span><b>Novo mural UORT</b><small>Compare antes × depois</small></span>${icon('arrowR')}</a>` : '')
+        + (x && x.type === 'tool' ? toolCta('hs-cta hs-cta-tr') : '');
     }
 
     const contactLinks = (cls) => CONTACT.map((c) => `<a class="${cls}" href="${c.href}"${ext(c.href)}>${icon(c.icon)} ${cls === 'btn-pill' ? c.label : esc(c.text)}${cls === 'vi-link' ? icon('arrowR') : ''}</a>`).join('');
@@ -674,6 +679,7 @@
       let extra = '';
       if (links) extra += `<div class="vi-block vi-links"><p class="lbl">Ir direto para</p>${links.map((l) => `<a class="vi-link" href="#s/${l.to}" data-go="${l.to}">${icon('arrowR')} ${esc(l.label)} ${icon('chevR')}</a>`).join('')}</div>`;
       if (x.type === 'mural') extra += `<div class="vi-block"><a class="vi-cta" href="#mural/1"><span class="ic">${icon('compare')}</span><span><b>Novo mural UORT</b><small>Compare o mural antigo com o novo</small></span>${icon('arrowR')}</a></div>`;
+      if (x.type === 'tool') extra += `<div class="vi-block">${toolCta('vi-cta')}</div>`;
       if (x.type === 'audio') extra += `<div class="vi-block">${audio.block()}</div>`;
       if (x.type === 'tvmap') extra += `<div class="vi-block"><p class="lbl">Mapa de inserções · Outubro</p>${TV.mobileMap(x.scenario)}</div>`;
       if (x.type === 'tvprog') extra += `<div class="vi-block"><p class="lbl">Valor negociado por inserção</p>${TV.mobilePrograms()}</div>`;
@@ -691,6 +697,7 @@
       let html = '';
       if (D.links[n]) html = `<span class="pill-hint">${icon('hand')} Clique nos cards para ir direto ao tema</span>`;
       else if (x.type === 'mural') html = `<a class="btn-pill glow" href="#mural/1">${icon('compare')} Comparar mural: antes × depois ${icon('arrowR')}</a>`;
+      else if (x.type === 'tool') html = `<a class="btn-pill glow" href="${D.tool.url}"${ext(D.tool.url)}>${icon('activity')} ${esc(D.tool.label)} ${icon('external')}</a>`;
       else if (x.type === 'audio') html = `<button class="btn-pill glow js-pop" aria-expanded="false">${icon('volume')} ${x.short ? 'Ouvir um testemunhal da BTN' : 'Ouvir exemplos de testemunhal'}</button>
         <div class="v-pop" role="dialog" aria-label="Exemplos de áudio"><button class="ibtn x js-pop-close" aria-label="Fechar">${icon('close')}</button>${audio.block()}</div>`;
       else if (x.type === 'contact') html = contactLinks('btn-pill');
@@ -833,6 +840,7 @@
       const s = S(n), x = D.extras[n] || {};
       const badge = x.type === 'audio' && !x.short ? `<span class="badge">${icon('volume')} Áudio</span>`
         : x.type === 'mural' ? `<span class="badge">${icon('compare')} Mural</span>`
+          : x.type === 'tool' ? `<span class="badge">${icon('activity')} Ferramenta</span>`
           : D.links[n] ? `<span class="badge">${icon('hand')} Interativa</span>` : '';
       const text = norm([s.t, s.d, s.k || '', chapterOf(n).title, 'lamina ' + n].join(' '));
       return `<button class="toc-item" data-go="${n}" data-text="${esc(text)}"><span class="th">${thumb(n)}<span class="num">${pad(n)}</span>${badge}</span><span class="tt">${esc(s.t)}</span></button>`;
@@ -846,8 +854,8 @@
         </div>
         <div class="toc-quick">
           <a class="chip" href="#mural/1">${icon('compare')} Mural antes × depois</a>
-          <button class="chip" data-go="46">${icon('volume')} Áudios da BTN</button>
-          <button class="chip" data-go="54">${icon('tv')} Mapa de inserções na TV</button>
+          <button class="chip" data-go="50">${icon('volume')} Áudios da BTN</button>
+          <button class="chip" data-go="57">${icon('tv')} Mapa de inserções na TV</button>
           <a class="chip" href="#quiz">${icon('quiz')} Teste seus conhecimentos</a>
         </div>
         ${D.chapters.map((c) => `<section class="toc-chap">

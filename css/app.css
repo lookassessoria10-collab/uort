@@ -409,6 +409,7 @@ h1, h2, h3, p { margin: 0; }
 .hs-cta b { display: block; font: 800 1.35cqw/1.15 var(--font-head); }
 .hs-cta small { display: block; font: 500 1cqw/1.2 var(--font-body); opacity: .9; }
 .hs-cta > .icon { width: 1.5cqw; height: 1.5cqw; }
+.hs-cta-tr { left: auto; right: 2.2%; top: 3.6%; }
 @keyframes ctaIn { from { opacity: 0; transform: translateY(1cqw); } }
 @container (max-width: 620px) { .hs-cta { display: none; } }
 

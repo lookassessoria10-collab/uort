@@ -88,7 +88,7 @@ window.TV = (() => {
     const kpi = (icon, v, l) => `<div class="hs-card tvk"><span class="hs-circle">${ic(icon)}</span><span class="div"></span><div><b>${v}</b><small>${l}</small></div></div>`;
     return `${deco}<div class="hs-pad">
       ${label}
-      <h2 class="hs-h">${sc.label} <span class="sep">|</span> <em>${sc.short}</em></h2>
+      <h2 class="hs-h">${sc.label} <span class="sep">|</span> <em>${money(sc.bruto)}</em></h2>
       <div class="hs-bar"></div>
       <p class="hs-sub">${T.station} — <b>${n} inserções de ${T.format}</b> ${sc.periodLong}.</p>
     </div>
@@ -104,12 +104,6 @@ window.TV = (() => {
         <div class="tvm-grid">${g}</div>
       </div>
       <div class="tvc-side">
-        <div class="hs-inv">
-          <div class="inv-bars"><i style="height:30%"></i><i style="height:52%"></i><i style="height:74%"></i><i style="height:100%"></i></div>
-          <span class="hs-circle">${ic('coins')}</span>
-          <small>Investimento ${T.station}</small>
-          <strong>${money(sc.total)}</strong>
-        </div>
         <div class="hs-card tvc-break">
           <div><span>Líquido</span><b>${money(sc.liquido)}</b></div>
           <div><span>Produção e envio</span><b>${money(sc.producao)}</b></div>
@@ -181,7 +175,6 @@ window.TV = (() => {
     }).join('');
     return `<div class="tvmob">${rows}
       <div class="tvmob-tot">
-        <div><span>${T.station} (${count(sc)} inserções)</span><b>${money(sc.total)}</b></div>
         <div><span>Líquido</span><b>${money(sc.liquido)}</b></div>
         <div><span>Produção e envio</span><b>${money(sc.producao)}</b></div>
         <div><span>Total bruto</span><b>${money(sc.bruto)}</b></div>

@@ -39,7 +39,8 @@ function Responder($ctx) {
     }
     $ext = [IO.Path]::GetExtension($arquivo).ToLower()
     $res.ContentType = if ($tipos.ContainsKey($ext)) { $tipos[$ext] } else { 'application/octet-stream' }
-    $res.Headers['Cache-Control'] = if ($ext -in '.html', '.js', '.css') { 'no-cache' } else { 'public, max-age=86400' }
+    # sem cache: ao trocar ou renumerar lâminas, o navegador sempre mostra a versão atual
+    $res.Headers['Cache-Control'] = 'no-cache'
     $res.Headers['Accept-Ranges'] = 'bytes'
     $fs = [IO.File]::OpenRead($arquivo)
     try {
