@@ -410,6 +410,22 @@ h1, h2, h3, p { margin: 0; }
 .hs-cta small { display: block; font: 500 1cqw/1.2 var(--font-body); opacity: .9; }
 .hs-cta > .icon { width: 1.5cqw; height: 1.5cqw; }
 .hs-cta-tr { left: auto; right: 2.2%; top: 3.6%; }
+
+/* observação discreta sobre a lâmina: ícone de atenção que mostra o texto ao clicar */
+.hs-pin { position: absolute; z-index: 2; transform: translate(-50%, -50%); }
+.hs-pin button {
+  width: max(22px, 1.7cqw); height: max(22px, 1.7cqw); padding: 0; border-radius: 50%; display: grid; place-items: center; cursor: pointer;
+  color: #fff; background: rgba(12, 29, 62, .62); border: 1.5px solid rgba(255, 255, 255, .8); box-shadow: 0 4px 12px -4px rgba(0, 0, 0, .55);
+  -webkit-backdrop-filter: blur(4px); backdrop-filter: blur(4px); transition: transform .2s, background .2s;
+}
+.hs-pin button:hover, .hs-pin.open button { transform: scale(1.12); background: rgba(12, 29, 62, .92); }
+.hs-pin button .icon { width: 72%; height: 72%; stroke-width: 2.6; }
+.hs-pin .bubble {
+  position: absolute; left: calc(100% + 10px); top: 50%; width: max-content; max-width: max(170px, 20cqw); padding: 8px 12px; border-radius: 10px; pointer-events: none;
+  background: rgba(12, 29, 62, .95); color: #fff; font: 500 max(11.5px, 1cqw)/1.35 var(--font-body); box-shadow: 0 12px 26px -12px rgba(0, 0, 0, .7);
+  opacity: 0; transform: translate(-6px, -50%); transition: opacity .2s, transform .2s;
+}
+.hs-pin.open .bubble { opacity: 1; transform: translate(0, -50%); }
 @keyframes ctaIn { from { opacity: 0; transform: translateY(1cqw); } }
 @container (max-width: 620px) { .hs-cta { display: none; } }
 

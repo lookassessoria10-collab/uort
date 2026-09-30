@@ -133,6 +133,11 @@ window.DECK = {
     ]
   },
 
+  /* Observações discretas: ícone de atenção sobre a lâmina que mostra o texto ao clicar (posição em % da lâmina) */
+  notes: {
+    30: [{ x: 26.2, y: 66.8, text: 'Imagem simulada — a foto da clínica será ajustada.' }]
+  },
+
   /* Recursos extras por lâmina */
   extras: {
     16: { type: 'mural' },

@@ -60,6 +60,7 @@
     tv: '<rect x="3" y="6" width="18" height="12" rx="2"/><path d="M8 21h8M12 18v3M9 2.5l3 3 3-3"/>',
     activity: '<path d="M3 12h4l3-7 4 14 3-7h4"/>',
     lock: '<rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/>',
+    alert: '<path d="M12 7v6M12 16.8h.01"/>',
     external: '<path d="M14 4h6v6M20 4l-9 9M18 14v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h5"/>'
   };
   const icon = (name, cls = '') => `<svg class="icon ${cls}" viewBox="0 0 24 24" aria-hidden="true">${ICONS[name] || ''}</svg>`;
@@ -711,7 +712,8 @@
       const x = D.extras[n];
       over.innerHTML = (D.links[n] || []).map((l) => `<a class="hs-link" href="#s/${l.to}" data-go="${l.to}" style="left:${l.x}%;top:${l.y}%;width:${l.w}%;height:${l.h}%" aria-label="Ir para ${esc(l.label)}"><span>${esc(l.label)} ${icon('arrowR')}</span></a>`).join('')
         + (x && x.type === 'mural' ? `<a class="hs-cta" href="#mural/1"><span class="ic">${icon('compare')}</span><span><b>Novo mural UORT</b><small>Compare antes × depois</small></span>${icon('arrowR')}</a>` : '')
-        + (x && x.type === 'tool' ? toolCta('hs-cta hs-cta-tr') : '');
+        + (x && x.type === 'tool' ? toolCta('hs-cta hs-cta-tr') : '')
+        + ((D.notes || {})[n] || []).map((m) => `<div class="hs-pin" style="left:${m.x}%;top:${m.y}%"><button class="js-pin" aria-expanded="false" aria-label="Observação sobre a imagem">${icon('alert')}</button><span class="bubble" role="tooltip">${esc(m.text)}</span></div>`).join('');
     }
 
     const contactLinks = (cls) => CONTACT.map((c) => `<a class="${cls}" href="${c.href}"${ext(c.href)}>${icon(c.icon)} ${cls === 'btn-pill' ? c.label : esc(c.text)}${cls === 'vi-link' ? icon('arrowR') : ''}</a>`).join('');
@@ -826,7 +828,13 @@
       else document.documentElement.requestFullscreen().catch(() => toast('Tela cheia indisponível neste navegador.'));
     }
 
+    // ícone de atenção: abre/fecha a observação; clicar fora fecha
+    const setPin = (p, on) => { p.classList.toggle('open', on); $('button', p).setAttribute('aria-expanded', on); };
+    const closePins = (except) => $$('.hs-pin.open', el).forEach((p) => { if (p !== except) setPin(p, false); });
     el.addEventListener('click', (e) => {
+      const pin = e.target.closest('.js-pin');
+      closePins(pin && pin.parentElement);
+      if (pin) { setPin(pin.parentElement, !pin.parentElement.classList.contains('open')); return; }
       const t = e.target.closest('[data-go]');
       if (t) { e.preventDefault(); go(+t.dataset.go); return; }
       if (e.target.closest('.js-next')) return next();
@@ -865,6 +873,7 @@
     });
 
     function escape() {
+      if ($('.hs-pin.open', el)) return closePins();
       if (pop() && pop().classList.contains('open')) return togglePop(false);
       if (!endEl.hidden) { endEl.hidden = true; }
     }
