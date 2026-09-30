@@ -726,7 +726,7 @@
       if (s.page) extra += `<div class="vi-block"><p class="lbl">A página completa · role para ver</p><div class="vi-page"><div class="bar"><i></i><i></i><i></i><span>${icon('lock')}${esc(s.page.url)}</span></div><img src="${s.page.src}" width="${s.page.w}" height="${s.page.h}" alt="${esc(s.d)}" loading="lazy"></div></div>`;
       if (x.type === 'tool') extra += `<div class="vi-block">${toolCta('vi-cta')}</div>`;
       if (x.type === 'audio') extra += `<div class="vi-block">${audio.block()}</div>`;
-      if (x.type === 'tvmap') extra += `<div class="vi-block"><p class="lbl">Mapa de inserções · Outubro</p>${TV.mobileMap(x.scenario)}</div>`;
+      if (x.type === 'tvmap') extra += `<div class="vi-block"><p class="lbl">${TV.mapTitle(x.scenario)} · Outubro</p>${TV.mobileMap(x.scenario)}</div>`;
       if (x.type === 'tvprog') extra += `<div class="vi-block"><p class="lbl">Valor negociado por inserção</p>${TV.mobilePrograms()}</div>`;
       if (x.type === 'contact') extra += `<div class="vi-block vi-contact">${contactLinks('vi-link')}</div>`;
       info.innerHTML = `

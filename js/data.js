@@ -3,7 +3,7 @@
    k = palavras-chave extras para a busca, key = lâmina essencial (trilha rápida). */
 
 window.DECK = {
-  total: 63,
+  total: 65,
   minutesPerSlide: 0.3,
 
   chapters: [
@@ -15,8 +15,8 @@ window.DECK = {
     { id: 'conteudo',      n: '05', title: 'Planejamento de Conteúdo',  from: 44, to: 46, cover: 45, desc: 'O calendário editorial de outubro, semana a semana.' },
     { id: 'online',        n: '06', title: 'Mídia Online',              from: 47, to: 49, cover: 48, desc: 'Google Ads, Meta Ads e o modelo de página de especialidade.' },
     { id: 'offline',       n: '07', title: 'Mídia Offline',             from: 50, to: 57, cover: 55, desc: 'Elevadores, BTN no rádio, painéis de LED e cenários de investimento.' },
-    { id: 'tv',            n: '08', title: 'Televisão',                 from: 58, to: 62, cover: 59, desc: 'TV Bahia: dois cenários de inserções, comparativo e programação.' },
-    { id: 'contato',       n: '—',  title: 'Contato',                   from: 63, to: 63, cover: 63, desc: 'LOOK Assessoria de Comunicação.' }
+    { id: 'tv',            n: '08', title: 'Televisão',                 from: 58, to: 64, cover: 59, desc: 'TV Bahia e TV Record: três cenários de inserções, merchandising, comparativo e programação.' },
+    { id: 'contato',       n: '—',  title: 'Contato',                   from: 65, to: 65, cover: 65, desc: 'LOOK Assessoria de Comunicação.' }
   ],
 
   slides: {
@@ -87,9 +87,11 @@ window.DECK = {
     58: { t: 'Televisão', d: 'Abertura da frente de televisão.', divider: true, k: 'tv' },
     59: { t: 'Cenário TV 01 · R$ 24.680,03', d: '9 inserções de 15” entre 11 e 16 de outubro. Produção e envio R$ 3.857,00 · TV Bahia R$ 20.823,03 · total bruto R$ 24.680,03.', html: 'tvCenario', scenario: 0, key: true, k: 'tv televisão investimento verba preço valor inserções' },
     60: { t: 'Cenário TV 02 · R$ 34.751,70', d: '14 inserções de 15” entre 11 e 23 de outubro. Produção e envio R$ 3.857,00 · TV Bahia R$ 30.894,70 · total bruto R$ 34.751,70.', html: 'tvCenario', scenario: 1, key: true, k: 'tv televisão investimento verba preço valor inserções' },
-    61: { t: 'Dois caminhos na TV', d: 'Mesma grade de 6 programas nos dois cenários. O Cenário 02 soma +5 inserções — Jornal da Manhã (+2), Globo Esporte (+1), Vale a Pena Ver de Novo (+1) e Panela de Bairro (+1) — e estende a presença até 23 de outubro.', html: 'tvComparativo', key: true, k: 'tv televisão cenários comparação investimento' },
-    62: { t: 'TV Bahia: programação selecionada', d: 'Inserções de 15” em 6 programas da TV Bahia — Jornal da Manhã, Bahia Meio Dia, Globo Esporte, Vale a Pena Ver de Novo, Chef Alto Nível e Panela de Bairro — com descontos negociados de 30% a 45% sobre a tabela.', html: 'tvProgramas', key: true, k: 'tv televisão globo programas tabela desconto' },
-    63: { t: 'Fale com a LOOK', d: 'Um olhar diferente. 71 99154-9332 · lookassessoria.com.br · contato@lookassessoria.com.br · @lookassessoria · Av. Juracy Magalhães Júnior, 300, Rio Vermelho, Salvador.', img: 59, key: true, k: 'contato telefone whatsapp email' }
+    61: { t: 'Cenário TV 03 · TV Record · R$ 21.289,02', d: '15 inserções de 30” na TV Record entre 12 e 22 de outubro, em 4 programas: Fala Brasil (5), Balanço Geral (3), Cidade Alerta (4) e Jornal da Record (3), com 86% de desconto sobre a tabela. Produção VT 30” R$ 4.000,00 · TV Record R$ 17.289,02 · total bruto R$ 21.289,02.', html: 'tvCenario', scenario: 2, key: true, k: 'tv televisão record investimento verba preço valor inserções fala brasil balanço geral cidade alerta jornal da record' },
+    62: { t: 'Cenário TV 03 · Merchandising · R$ 20.294,15', d: '4 ações de merchandising de 60” na TV Record entre 13 e 22 de outubro: Balanço Geral (13 e 22/out) R$ 10.309,95 e Cidade Alerta (15 e 20/out) R$ 7.984,20, com 80% de desconto sobre a tabela. Cachê dos apresentadores R$ 2.000,00 · TV Record R$ 18.294,15 · total + cachê R$ 20.294,15.', html: 'tvCenario', scenario: 3, k: 'tv televisão record merchan merchandising apresentadores cachê balanço geral cidade alerta investimento' },
+    63: { t: 'Dois caminhos na TV', d: 'Mesma grade de 6 programas nos dois cenários. O Cenário 02 soma +5 inserções — Jornal da Manhã (+2), Globo Esporte (+1), Vale a Pena Ver de Novo (+1) e Panela de Bairro (+1) — e estende a presença até 23 de outubro.', html: 'tvComparativo', key: true, k: 'tv televisão cenários comparação investimento' },
+    64: { t: 'TV Bahia: programação selecionada', d: 'Inserções de 15” em 6 programas da TV Bahia — Jornal da Manhã, Bahia Meio Dia, Globo Esporte, Vale a Pena Ver de Novo, Chef Alto Nível e Panela de Bairro — com descontos negociados de 30% a 45% sobre a tabela.', html: 'tvProgramas', key: true, k: 'tv televisão globo programas tabela desconto' },
+    65: { t: 'Fale com a LOOK', d: 'Um olhar diferente. 71 99154-9332 · lookassessoria.com.br · contato@lookassessoria.com.br · @lookassessoria · Av. Juracy Magalhães Júnior, 300, Rio Vermelho, Salvador.', img: 59, key: true, k: 'contato telefone whatsapp email' }
   },
 
   /* Televisão — guia "TVBA" das planilhas PLANO DE MÍDIA UORT (Cenário 01 = arquivo V2, Cenário 02 = arquivo original) */
@@ -111,7 +113,26 @@ window.DECK = {
         total: 20823.025, liquido: 16658.42, producao: 3857, bruto: 24680.025 },
       { label: 'Cenário TV 02', period: '11 a 23/out', periodLong: 'entre 11 e 23 de outubro',
         days: { BPRA: [11, 15, 18, 20, 22], PTV1: [12, 19], GESP: [13, 20], VALE: [14, 21], STQ1: [12], PANB: [16, 23] },
-        total: 30894.7, liquido: 24715.76, producao: 3857, bruto: 34751.7 }
+        total: 30894.7, liquido: 24715.76, producao: 3857, bruto: 34751.7 },
+
+      /* Cenário 03 — TV Record (PLANO DE MÍDIA UORT - OUTUBRO 2026.xlsx: guias "RECORD" e "MERCHAN RECORD").
+         Cenários com emissora própria trazem station/format/programs; days usa a chave "key" de cada programa. */
+      { label: 'Cenário TV 03', station: 'TV Record', format: '30”', period: '12 a 22/out', periodLong: 'entre 12 e 22 de outubro',
+        programs: [
+          { key: 'FBR', name: 'Fala Brasil',      icon: 'sunrise', tab: 5032,  desc: 86, neg: 704.48 },
+          { key: 'BGE', name: 'Balanço Geral',    icon: 'news',    tab: 9819,  desc: 86, neg: 1374.66 },
+          { key: 'CAL', name: 'Cidade Alerta',    icon: 'news',    tab: 7604,  desc: 86, neg: 1064.56 },
+          { key: 'JRE', name: 'Jornal da Record', icon: 'tv',      tab: 12820, desc: 86, neg: 1794.8 }
+        ],
+        days: { FBR: [12, 14, 16, 20, 22], BGE: [13, 15, 21], CAL: [12, 14, 20, 22], JRE: [13, 15, 19] },
+        total: 17289.02, costs: [['Produção VT 30”', 4000], ['TV Record', 17289.02]], bruto: 21289.02 },
+      { label: 'Merchandising', tag: 'Cenário TV 03', merchan: true, station: 'TV Record', format: '60”', period: '13 a 22/out', periodLong: 'entre 13 e 22 de outubro',
+        programs: [
+          { key: 'MBG', name: 'Balanço Geral', icon: 'news', tab: 51549.76, desc: 80, neg: 10309.952, total: 10309.952 },
+          { key: 'MCA', name: 'Cidade Alerta', icon: 'news', tab: 39921,    desc: 80, neg: 7984.2,    total: 7984.2 }
+        ],
+        days: { MBG: [13, 22], MCA: [15, 20] },
+        total: 18294.152, costs: [['Cachê apresentadores', 2000], ['TV Record', 18294.152]], bruto: 20294.152, brutoLabel: 'Total + cachê' }
     ]
   },
 
@@ -152,8 +173,10 @@ window.DECK = {
     53: { type: 'audio', short: true },
     59: { type: 'tvmap', scenario: 0 },
     60: { type: 'tvmap', scenario: 1 },
-    62: { type: 'tvprog' },
-    63: { type: 'contact' }
+    61: { type: 'tvmap', scenario: 2 },
+    62: { type: 'tvmap', scenario: 3 },
+    64: { type: 'tvprog' },
+    65: { type: 'contact' }
   },
 
   /* Ferramenta de análise funcional (botão nas lâminas "Onde dói?" e Análise de Movimento) */
@@ -184,7 +207,7 @@ window.DECK = {
     { id: 'conteudo',   label: 'Conteúdo de outubro',           from: 45, to: 46, key: [45] },
     { id: 'online',     label: 'Mídia online',                  from: 48, to: 49, key: [48, 49] },
     { id: 'offline',    label: 'Mídia offline, rádio e LED',    from: 51, to: 57, key: [51, 52, 53, 54, 57] },
-    { id: 'tv',         label: 'Televisão (TV Bahia)',          from: 59, to: 62, key: [61, 62] }
+    { id: 'tv',         label: 'Televisão (TV Bahia e Record)', from: 59, to: 64, key: [61, 63, 64] }
   ],
 
   faq: [
@@ -194,7 +217,7 @@ window.DECK = {
     { q: 'Quanto será investido em mídia online?', to: 48 },
     { q: 'O que é a BTN? (ouça os áudios)', to: 52 },
     { q: 'Quais são os cenários de mídia offline?', to: 57 },
-    { q: 'Como fica a TV Bahia?', to: 62 },
+    { q: 'Como fica a TV Bahia?', to: 64 },
     { q: 'Como será a Comunidade no WhatsApp?', to: 39 },
     { q: 'Como fica o conteúdo de outubro?', to: 45 }
   ],

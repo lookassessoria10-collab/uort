@@ -1,4 +1,4 @@
-/* Lâminas HTML de Televisão (TV Bahia), geradas a partir de DECK.tv */
+/* Lâminas HTML de Televisão (TV Bahia e TV Record), geradas a partir de DECK.tv */
 window.TV = (() => {
   const T = window.DECK.tv;
   const brl = new Intl.NumberFormat('pt-BR', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
@@ -32,8 +32,20 @@ window.TV = (() => {
     <path d="M1920 432C1800 622 1790 842 1880 1080" fill="none" stroke="#9fe6eb" stroke-width="2" opacity=".85"/>
   </svg>`;
 
-  const foot = `<div class="hs-foot"><span>UORT • Planejamento de Mídia · Televisão</span><span class="pg">TV BAHIA</span></div>`;
-  const label = `<div class="hs-label">Televisão · ${T.station}</div>`;
+  const footOf = (st) => `<div class="hs-foot"><span>UORT • Planejamento de Mídia · Televisão</span><span class="pg">${st.toUpperCase()}</span></div>`;
+  const labelOf = (st, tag) => `<div class="hs-label">Televisão · ${st}${tag ? ' · ' + tag : ''}</div>`;
+  const foot = footOf(T.station), label = labelOf(T.station);
+  // um cenário pode ter emissora, formato e grade próprios (ex.: TV Record); senão usa os da TV Bahia
+  const stOf = (sc) => sc.station || T.station;
+  const fmtOf = (sc) => sc.format || T.format;
+  const progsOf = (sc) => sc.programs || T.programs;
+  const keyOf = (p) => p.key || p.code;
+  const rowTotal = (p, ds) => (p.total != null ? p.total : p.neg * ds.length);   // merchan: total fixo da planilha
+  const costsOf = (sc) => sc.costs || [['Produção e envio', sc.producao], [stOf(sc), sc.total]];
+  const words = (sc) => (sc.merchan
+    ? { many: 'ações de merchandising', month: 'ações no mês', per: 'por ação', map: 'Mapa de merchandising', one: 'ação' }
+    : { many: 'inserções', month: 'inserções no mês', per: 'por inserção', map: 'Mapa de inserções', one: 'inserção' });
+  const code = (p) => (p.code ? `<span class="tvp-code">${p.code}</span>` : '');
   const count = (sc) => Object.values(sc.days).reduce((a, d) => a + d.length, 0);
   const perDay = (sc) => { const a = Array(32).fill(0); Object.values(sc.days).forEach((ds) => ds.forEach((d) => a[d]++)); return a; };
   const span = (sc) => { const all = Object.values(sc.days).flat(); return [Math.min(...all), Math.max(...all)]; };
@@ -68,16 +80,16 @@ window.TV = (() => {
   }
 
   function cenario(i) {
-    const sc = T.scenarios[i];
+    const sc = T.scenarios[i], st = stOf(sc), fmt = fmtOf(sc), progs = progsOf(sc), w = words(sc);
     const n = count(sc), pd = perDay(sc), [first, last] = span(sc);
     let g = '<div class="hd l">Programa</div>';
     for (let d = 1; d <= 31; d++) g += `<div class="hd${pd[d] ? ' on' : ''}">${d}</div>`;
     g += '<div class="hd r">Ins.</div><div class="hd r">Total</div>';
     let sum = 0;
-    T.programs.forEach((p) => {
-      const ds = sc.days[p.code] || [];
-      const tot = p.neg * ds.length; sum += tot;
-      g += `<div class="p"><span class="tvp-code">${p.code}</span><b>${p.name}</b></div>`;
+    progs.forEach((p) => {
+      const ds = sc.days[keyOf(p)] || [];
+      const tot = rowTotal(p, ds); sum += tot;
+      g += `<div class="p">${code(p)}<b>${p.name}</b></div>`;
       for (let d = 1; d <= 31; d++) g += `<div class="c${ds.includes(d) ? ' on' : ''}${d >= first && d <= last ? ' win' : ''}"><i></i></div>`;
       g += `<div class="n">${ds.length}</div><div class="v">${money(tot)}</div>`;
     });
@@ -87,32 +99,31 @@ window.TV = (() => {
 
     const kpi = (icon, v, l) => `<div class="hs-card tvk"><span class="hs-circle">${ic(icon)}</span><span class="div"></span><div><b>${v}</b><small>${l}</small></div></div>`;
     return `${deco}<div class="hs-pad">
-      ${label}
+      ${labelOf(st, sc.tag)}
       <h2 class="hs-h">${sc.label} <span class="sep">|</span> <em>${money(sc.bruto)}</em></h2>
       <div class="hs-bar"></div>
-      <p class="hs-sub">${T.station} — <b>${n} inserções de ${T.format}</b> ${sc.periodLong}.</p>
+      <p class="hs-sub">${st} — <b>${n} ${w.many} de ${fmt}</b> ${sc.periodLong}.</p>
     </div>
     <div class="tvk-row">
-      ${kpi('play', n, 'inserções no mês')}
-      ${kpi('layers', T.programs.length, 'programas')}
-      ${kpi('clock', T.format, 'por inserção')}
+      ${kpi('play', n, w.month)}
+      ${kpi('layers', progs.length, progs.length > 1 ? 'programas' : 'programa')}
+      ${kpi('clock', fmt, w.per)}
       ${kpi('cal', sc.period, 'período de veiculação')}
     </div>
     <div class="tvc-main">
       <div class="hs-card tvm">
-        <div class="tvm-head"><span>Mapa de inserções · Outubro</span><span class="tvm-legend"><i></i>inserção de ${T.format}</span></div>
+        <div class="tvm-head"><span>${w.map} · Outubro</span><span class="tvm-legend"><i></i>${w.one} de ${fmt}</span></div>
         <div class="tvm-grid">${g}</div>
       </div>
       <div class="tvc-side">
         <div class="hs-card tvc-break">
-          <div><span>Produção e envio</span><b>${money(sc.producao)}</b></div>
-          <div><span>${T.station}</span><b>${money(sc.total)}</b></div>
-          <div class="tot"><span>Total bruto</span><b>${money(sc.bruto)}</b></div>
+          ${costsOf(sc).map(([l, v]) => `<div><span>${l}</span><b>${money(v)}</b></div>`).join('')}
+          <div class="tot"><span>${sc.brutoLabel || 'Total bruto'}</span><b>${money(sc.bruto)}</b></div>
         </div>
       </div>
     </div>
     <div class="hs-note sm">${ic('info')}<span>${T.obs.join(' &nbsp;·&nbsp; ')}</span></div>
-    ${foot}`;
+    ${footOf(st)}`;
   }
 
   function comparativo() {
@@ -165,21 +176,21 @@ window.TV = (() => {
   /* Versões em texto para a tela do celular */
   function mobileMap(i) {
     const sc = T.scenarios[i];
-    const rows = T.programs.map((p) => {
-      const ds = sc.days[p.code] || [];
+    const rows = progsOf(sc).map((p) => {
+      const ds = sc.days[keyOf(p)] || [];
       return `<div class="tvmob-row">
-        <div class="nm"><span>${p.code}</span>${p.name}</div>
-        <div class="val">${ds.length}× · ${money(p.neg * ds.length)}</div>
+        <div class="nm">${p.code ? `<span>${p.code}</span>` : ''}${p.name}</div>
+        <div class="val">${ds.length}× · ${money(rowTotal(p, ds))}</div>
         <div class="days">${ds.map((d) => `<i>${String(d).padStart(2, '0')}/10</i>`).join('')}</div>
       </div>`;
     }).join('');
     return `<div class="tvmob">${rows}
       <div class="tvmob-tot">
-        <div><span>Produção e envio</span><b>${money(sc.producao)}</b></div>
-        <div><span>${T.station}</span><b>${money(sc.total)}</b></div>
-        <div><span>Total bruto</span><b>${money(sc.bruto)}</b></div>
+        ${costsOf(sc).map(([l, v]) => `<div><span>${l}</span><b>${money(v)}</b></div>`).join('')}
+        <div><span>${sc.brutoLabel || 'Total bruto'}</span><b>${money(sc.bruto)}</b></div>
       </div></div>`;
   }
+  const mapTitle = (i) => words(T.scenarios[i]).map;
   function mobilePrograms() {
     return `<div class="tvmob">${T.programs.map((p) => `<div class="tvmob-row">
       <div class="nm"><span>${p.code}</span>${p.name}${p.time ? ' · ' + p.time : ''}</div>
@@ -188,5 +199,5 @@ window.TV = (() => {
     </div>`).join('')}</div>`;
   }
 
-  return { render, mobileMap, mobilePrograms, money };
+  return { render, mobileMap, mobilePrograms, mapTitle, money };
 })();
