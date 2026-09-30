@@ -33,7 +33,7 @@ window.DECK = {
     11: { t: 'Movimento é o conceito', d: 'Ortopedia é a especialidade. Movimento é o que o paciente deseja recuperar: caminhar, trabalhar, praticar esporte, brincar e retomar a rotina.', key: true, k: 'conceito movimento narrativa' },
     12: { t: 'O que iremos fazer', d: 'Criar nova identidade visual, ações de marketing, planejamento de conteúdo, investimento em mídia online e em mídia offline. Toque em um card para ir direto ao tema.', key: true, k: 'escopo entregas' },
     13: { t: 'Nova identidade visual', d: 'Abertura do capítulo de identidade visual.', divider: true },
-    14: { t: 'Preview do feed UORT', d: 'Conceitos de conteúdo para redes sociais: informação, educação, especialistas, qualidade de vida e confiança.', key: true, k: 'instagram redes sociais posts' },
+    14: { t: 'Preview do feed UORT', d: 'Conceitos de conteúdo para redes sociais — informação, educação, especialistas, qualidade de vida e confiança: “Seu ombro dói para levantar o braço?”, “Especialistas em movimento”, “Começou a correr?”, “Atendimento com hora marcada”, “Seu joelho dói ao subir escadas?”, “Pequenos avanços, grandes conquistas” e “Como podemos ajudar?”.', key: true, k: 'instagram redes sociais posts' },
     15: { t: 'Materiais institucionais', d: 'Papelaria e apresentação da marca: cartões de visita, envelope, pasta, papel timbrado e cartão de marcação de consultas.', k: 'papelaria cartão' },
     16: { t: 'Materiais digitais', d: 'Presença digital e pontos de contato: site responsivo e o novo mural UORT. Compare o mural antigo com o novo.', key: true, k: 'site mural digital' },
     17: { t: 'Ações de Marketing', d: 'Abertura do capítulo de ações de marketing.', divider: true },
