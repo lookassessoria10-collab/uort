@@ -322,6 +322,34 @@
   })();
 
   /* ==========================================================================
+     VÍDEO DE EXEMPLO (abre sobre a apresentação)
+     ========================================================================== */
+  const player = (() => {
+    const dlg = $('#vplayer'), video = $('video', dlg);
+    $('.js-vclose', dlg).innerHTML = icon('close');
+    function open(id) {
+      const v = (D.videos || {})[id]; if (!v) return;
+      audio.stopAll();
+      $('.vp-title', dlg).textContent = v.title;
+      $('.vp-note', dlg).textContent = v.note || '';
+      video.src = v.src;
+      if (!dlg.open) dlg.showModal();
+      const p = video.play(); if (p && p.catch) p.catch(() => { /* o usuário aperta o play */ });
+    }
+    // para o vídeo em qualquer forma de fechar (X, clique fora, Esc) — sem depender só do evento "close"
+    const stop = () => { if (!video.getAttribute('src')) return; video.pause(); video.removeAttribute('src'); video.load(); };
+    const close = () => { if (dlg.open) dlg.close(); stop(); };
+    dlg.addEventListener('close', stop);
+    dlg.addEventListener('cancel', stop);
+    document.addEventListener('keydown', (e) => { if (e.key === 'Escape' && dlg.open) { e.preventDefault(); close(); } }, true);
+    $('.js-vclose', dlg).addEventListener('click', close);
+    dlg.addEventListener('click', (e) => { if (e.target === dlg) close(); });
+    // qualquer botão .js-video (na lâmina, na barra ou no painel do celular)
+    document.addEventListener('click', (e) => { const b = e.target.closest('.js-video'); if (b) { e.preventDefault(); open(b.dataset.video); } });
+    return { isOpen: () => dlg.open };
+  })();
+
+  /* ==========================================================================
      ROTEAMENTO
      ========================================================================== */
   const views = { home: $('#home'), guide: $('#guide'), viewer: $('#viewer'), mural: $('#mural'), quiz: $('#quiz') };
@@ -723,6 +751,7 @@
       let extra = '';
       if (links) extra += `<div class="vi-block vi-links"><p class="lbl">Ir direto para</p>${links.map((l) => `<a class="vi-link" href="#s/${l.to}" data-go="${l.to}">${icon('arrowR')} ${esc(l.label)} ${icon('chevR')}</a>`).join('')}</div>`;
       if (x.type === 'mural') extra += `<div class="vi-block"><a class="vi-cta" href="#mural/1"><span class="ic">${icon('compare')}</span><span><b>Novo mural UORT</b><small>Compare o mural antigo com o novo</small></span>${icon('arrowR')}</a></div>`;
+      if (s.video) { const v = D.videos[s.video]; extra += `<div class="vi-block"><button class="vi-cta js-video" data-video="${s.video}"><span class="ic">${icon('play')}</span><span><b>${esc(v.title)}</b><small>${esc(v.sub)}</small></span>${icon('arrowR')}</button></div>`; }
       if (s.page) extra += `<div class="vi-block"><p class="lbl">A página completa · role para ver</p><div class="vi-page"><div class="bar"><i></i><i></i><i></i><span>${icon('lock')}${esc(s.page.url)}</span></div><img src="${s.page.src}" width="${s.page.w}" height="${s.page.h}" alt="${esc(s.d)}" loading="lazy"></div></div>`;
       if (x.type === 'tool') extra += `<div class="vi-block">${toolCta('vi-cta')}</div>`;
       if (x.type === 'audio') extra += `<div class="vi-block">${audio.block()}</div>`;
@@ -742,6 +771,7 @@
       let html = '';
       if (D.links[n]) html = `<span class="pill-hint">${icon('hand')} Clique nos cards para ir direto ao tema</span>`;
       else if (S(n).page) html = `<span class="pill-hint">${icon('hand')} Role a página na janela · clique numa seção para ir direto a ela</span>`;
+      else if (S(n).video) html = `<button class="btn-pill glow js-video" data-video="${S(n).video}">${icon('play')} Ver ${esc(D.videos[S(n).video].title.toLowerCase())}</button>`;
       else if (x.type === 'mural') html = `<a class="btn-pill glow" href="#mural/1">${icon('compare')} Comparar mural: antes × depois ${icon('arrowR')}</a>`;
       else if (x.type === 'tool') html = `<a class="btn-pill glow" href="${D.tool.url}"${ext(D.tool.url)}>${icon('activity')} ${esc(D.tool.label)} ${icon('external')}</a>`;
       else if (x.type === 'audio') html = `<button class="btn-pill glow js-pop" aria-expanded="false">${icon('volume')} ${x.short ? 'Ouvir um testemunhal da BTN' : 'Ouvir exemplos de testemunhal'}</button>
@@ -1193,6 +1223,7 @@
      ========================================================================== */
   document.addEventListener('keydown', (e) => {
     if (e.defaultPrevented || e.altKey || e.ctrlKey || e.metaKey) return;
+    if (player.isOpen()) return;   // teclas ficam com o vídeo (Esc fecha)
     if (zoom.isOpen()) {
       if (e.key === '+' || e.key === '=') zoom.inc();
       else if (e.key === '-') zoom.dec();

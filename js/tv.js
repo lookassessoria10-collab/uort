@@ -19,7 +19,8 @@ window.TV = (() => {
     coins: '<ellipse cx="9" cy="6.5" rx="5.5" ry="2.5"/><path d="M3.5 6.5v4c0 1.4 2.5 2.5 5.5 2.5s5.5-1.1 5.5-2.5v-4"/><path d="M3.5 10.5v4c0 1.4 2.5 2.5 5.5 2.5.7 0 1.3 0 1.9-.2"/><circle cx="16.5" cy="16.5" r="4.5"/><path d="M16.5 14.5v4M14.8 16.5h3.4"/>',
     info: '<circle cx="12" cy="12" r="9"/><path d="M12 11v6M12 7.6h.01"/>',
     bars: '<path d="M5 20v-5M10 20v-9M15 20v-7M20 20V5"/>',
-    plus: '<circle cx="12" cy="12" r="9"/><path d="M12 8v8M8 12h8"/>'
+    plus: '<circle cx="12" cy="12" r="9"/><path d="M12 8v8M8 12h8"/>',
+    playFill: '<path d="M8.5 5.5v13l10-6.5z" fill="currentColor" stroke="none"/>'
   };
   const ic = (n) => `<svg class="tv-ic" viewBox="0 0 24 24" aria-hidden="true">${I[n] || ''}</svg>`;
 
@@ -79,8 +80,9 @@ window.TV = (() => {
     ${foot}`;
   }
 
-  function cenario(i) {
+  function cenario(i, slide = {}) {
     const sc = T.scenarios[i], st = stOf(sc), fmt = fmtOf(sc), progs = progsOf(sc), w = words(sc);
+    const vid = slide.video && (window.DECK.videos || {})[slide.video];
     const n = count(sc), pd = perDay(sc), [first, last] = span(sc);
     let g = '<div class="hd l">Programa</div>';
     for (let d = 1; d <= 31; d++) g += `<div class="hd${pd[d] ? ' on' : ''}">${d}</div>`;
@@ -115,11 +117,12 @@ window.TV = (() => {
         <div class="tvm-head"><span>${w.map} · Outubro</span><span class="tvm-legend"><i></i>${w.one} de ${fmt}</span></div>
         <div class="tvm-grid">${g}</div>
       </div>
-      <div class="tvc-side">
+      <div class="tvc-side${vid ? ' has-video' : ''}">
         <div class="hs-card tvc-break">
           ${costsOf(sc).map(([l, v]) => `<div><span>${l}</span><b>${money(v)}</b></div>`).join('')}
           <div class="tot"><span>${sc.brutoLabel || 'Total bruto'}</span><b>${money(sc.bruto)}</b></div>
         </div>
+        ${vid ? `<button type="button" class="tvv js-video" data-video="${slide.video}"><span class="tvv-play">${ic('playFill')}</span><span><b>${vid.title}</b><small>${vid.sub}</small></span></button>` : ''}
       </div>
     </div>
     <div class="hs-note sm">${ic('info')}<span>${T.obs.join(' &nbsp;·&nbsp; ')}</span></div>
@@ -166,9 +169,9 @@ window.TV = (() => {
   function render(slide) {
     const el = document.createElement('div');
     el.className = 'hs';
-    el.setAttribute('role', 'img');
+    el.setAttribute('role', slide.video ? 'group' : 'img');
     el.setAttribute('aria-label', slide.t + '. ' + slide.d);
-    el.innerHTML = slide.html === 'tvProgramas' ? programas() : slide.html === 'tvCenario' ? cenario(slide.scenario) : comparativo();
+    el.innerHTML = slide.html === 'tvProgramas' ? programas() : slide.html === 'tvCenario' ? cenario(slide.scenario, slide) : comparativo();
     return el;
   }
 

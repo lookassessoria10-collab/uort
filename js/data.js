@@ -88,7 +88,7 @@ window.DECK = {
     59: { t: 'Cenário TV 01 · R$ 24.680,03', d: '9 inserções de 15” entre 11 e 16 de outubro. Produção e envio R$ 3.857,00 · TV Bahia R$ 20.823,03 · total bruto R$ 24.680,03.', html: 'tvCenario', scenario: 0, key: true, k: 'tv televisão investimento verba preço valor inserções' },
     60: { t: 'Cenário TV 02 · R$ 34.751,70', d: '14 inserções de 15” entre 11 e 23 de outubro. Produção e envio R$ 3.857,00 · TV Bahia R$ 30.894,70 · total bruto R$ 34.751,70.', html: 'tvCenario', scenario: 1, key: true, k: 'tv televisão investimento verba preço valor inserções' },
     61: { t: 'Cenário TV 03 · TV Record · R$ 21.289,02', d: '15 inserções de 30” na TV Record entre 12 e 22 de outubro, em 4 programas: Fala Brasil (5), Balanço Geral (3), Cidade Alerta (4) e Jornal da Record (3), com 86% de desconto sobre a tabela. Produção VT 30” R$ 4.000,00 · TV Record R$ 17.289,02 · total bruto R$ 21.289,02.', html: 'tvCenario', scenario: 2, key: true, k: 'tv televisão record investimento verba preço valor inserções fala brasil balanço geral cidade alerta jornal da record' },
-    62: { t: 'Cenário TV 04 · Merchandising · R$ 20.294,15', d: '4 ações de merchandising de 60” na TV Record entre 13 e 22 de outubro: Balanço Geral (13 e 22/out) R$ 10.309,95 e Cidade Alerta (15 e 20/out) R$ 7.984,20, com 80% de desconto sobre a tabela. Cachê dos apresentadores R$ 2.000,00 · TV Record R$ 18.294,15 · total + cachê R$ 20.294,15.', html: 'tvCenario', scenario: 3, k: 'tv televisão record merchan merchandising apresentadores cachê balanço geral cidade alerta investimento' },
+    62: { t: 'Cenário TV 04 · Merchandising · R$ 20.294,15', d: '4 ações de merchandising de 60” na TV Record entre 13 e 22 de outubro: Balanço Geral (13 e 22/out) R$ 10.309,95 e Cidade Alerta (15 e 20/out) R$ 7.984,20, com 80% de desconto sobre a tabela. Cachê dos apresentadores R$ 2.000,00 · TV Record R$ 18.294,15 · total + cachê R$ 20.294,15.', html: 'tvCenario', scenario: 3, video: 'merchan', k: 'tv televisão record merchan vídeo exemplo merchandising apresentadores cachê balanço geral cidade alerta investimento' },
     63: { t: 'Quatro caminhos na TV', d: 'Comparativo dos 4 cenários de TV: Cenário 01 (TV Bahia) — 9 inserções de 15”, total bruto R$ 24.680,03 · Cenário 02 (TV Bahia) — 14 inserções de 15”, R$ 34.751,70 · Cenário 03 (TV Record) — 15 inserções de 30”, R$ 21.289,02 · Cenário 04 (merchandising na TV Record) — 4 ações de 60”, R$ 20.294,15.', html: 'tvComparativo', key: true, k: 'tv televisão cenários comparação comparativo investimento bahia record merchandising' },
     64: { t: 'Fale com a LOOK', d: 'Um olhar diferente. 71 99154-9332 · lookassessoria.com.br · contato@lookassessoria.com.br · @lookassessoria · Av. Juracy Magalhães Júnior, 300, Rio Vermelho, Salvador.', img: 59, key: true, k: 'contato telefone whatsapp email' }
   },
@@ -179,6 +179,11 @@ window.DECK = {
 
   /* Ferramenta de análise funcional (botão nas lâminas "Onde dói?" e Análise de Movimento) */
   tool: { url: 'https://moveo-omega.vercel.app/', title: 'Análise de Movimento UORT', label: 'Abrir a ferramenta de análise funcional' },
+
+  /* Vídeos de exemplo (botão na lâmina indicada por slides[n].video) */
+  videos: {
+    merchan: { src: 'assets/video/merchan-exemplo.mp4', title: 'Exemplo de merchandising', sub: 'Veja como o formato aparece na TV', note: 'Vídeo de referência de outro anunciante, usado apenas para ilustrar o formato.' }
+  },
 
   audios: [
     { id: 'bandnews', src: 'assets/audio/bandnews-exemplo.mp3', radio: 'BandNews FM', seed: 7 },

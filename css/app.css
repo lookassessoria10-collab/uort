@@ -534,6 +534,15 @@ h1, h2, h3, p { margin: 0; }
 .zoom-scroll { position: absolute; inset: 0; overflow: auto; touch-action: pan-x pan-y; overscroll-behavior: contain; display: flex; }
 .zoom-content { --z: 1; position: relative; flex: none; margin: auto; width: calc(var(--z) * var(--base-w)); aspect-ratio: var(--ratio, 16 / 9); }
 .zoom-content > img { width: 100%; height: 100%; object-fit: contain; user-select: none; -webkit-user-drag: none; }
+/* ----- vídeo de exemplo ----- */
+.vplayer { padding: 0; border: 0; background: transparent; color: #fff; max-width: none; max-height: none; overflow: visible; }
+.vplayer::backdrop { background: rgba(1, 10, 12, .86); backdrop-filter: blur(6px); }
+.vp-box { width: min(92vw, 960px); padding: 14px; border-radius: 22px; background: #031b20; border: 1px solid rgba(53, 232, 242, .18); box-shadow: 0 40px 90px -30px rgba(0, 0, 0, .9); }
+.vp-head { display: flex; align-items: center; gap: 12px; padding: 2px 2px 12px 8px; }
+.vp-title { flex: 1; font: 800 16px/1.2 var(--font-head); }
+.vplayer video { display: block; width: 100%; max-height: 72vh; border-radius: 14px; background: #000; }
+.vp-note { margin: 10px 6px 2px; font-size: 12.5px; color: var(--muted); }
+button.vi-cta { width: 100%; border: 0; font: inherit; text-align: left; cursor: pointer; }
 .zoom-bar { position: absolute; top: calc(12px + env(safe-area-inset-top)); right: calc(12px + env(safe-area-inset-right)); display: flex; gap: 8px; z-index: 2; }
 .zoom-bar .ibtn { background: rgba(2, 20, 23, .7); backdrop-filter: blur(8px); }
 .zoom-tip { position: absolute; left: 50%; bottom: calc(16px + env(safe-area-inset-bottom)); transform: translateX(-50%); padding: 8px 14px; border-radius: 999px; background: rgba(2, 20, 23, .75); font-size: 12.5px; color: var(--muted); pointer-events: none; white-space: nowrap; }

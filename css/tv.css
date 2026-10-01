@@ -100,6 +100,18 @@
 .tvm-grid .t.v { border-radius: 0 12px 12px 0; padding-right: 10px; color: var(--tv-navy); font-weight: 800; }
 
 .tvc-side { display: grid; }
+.tvc-side.has-video { grid-template-rows: 1fr auto; gap: 20px; }
+/* botão "exemplo em vídeo" dentro da lâmina */
+.tvv {
+  display: flex; align-items: center; gap: 20px; width: 100%; padding: 20px 24px; border: 0; border-radius: 28px; cursor: pointer; text-align: left;
+  font: inherit; color: #fff; background: linear-gradient(120deg, #0b6f78, #14a7b2); box-shadow: 0 22px 44px -26px rgba(8, 90, 100, .8);
+  transition: transform .25s, box-shadow .25s;
+}
+.tvv:hover { transform: translateY(-3px); box-shadow: 0 28px 50px -24px rgba(8, 90, 100, .9); }
+.tvv-play { width: 64px; height: 64px; flex: none; border-radius: 50%; display: grid; place-items: center; background: #fff; color: var(--tv-teal); box-shadow: 0 0 0 8px rgba(255, 255, 255, .18); }
+.tvv-play .tv-ic { width: 30px; height: 30px; margin-left: 4px; }
+.tvv b { display: block; font: 800 22px/1.15 'Montserrat', sans-serif; }
+.tvv small { display: block; margin-top: 5px; font-size: 17px; opacity: .9; }
 .tvc-break { display: flex; flex-direction: column; justify-content: center; padding: 16px 28px; }
 .tvc-break > div { display: flex; justify-content: space-between; align-items: baseline; gap: 16px; padding: 24px 0; border-bottom: 1px solid #edf5f6; font-size: 19px; color: #506273; }
 .tvc-break > div:last-child { border-bottom: 0; }

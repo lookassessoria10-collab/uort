@@ -16,6 +16,7 @@ Site estático (HTML, CSS e JavaScript puros, sem build e sem dependências), ot
 - **Página de especialidade** (lâmina 49): a landing page inteira, rolável dentro de uma janela de navegador
 - **Áudios de exemplo da BTN** (lâmina 52): testemunhais da BandNews FM e da Jovem Pan FM
 - **Televisão** (lâminas 59–63): quatro cenários com mapa de inserções (TV Bahia e TV Record, incluindo merchandising na Record) e o comparativo entre eles
+- **Exemplo de merchandising** (lâmina 62): botão que abre um vídeo de referência do formato
 - **Teste de conhecimentos** com link para a lâmina de cada resposta
 
 ## Como abrir no computador
@@ -49,6 +50,7 @@ assets/slides-m/     lâminas em 1000 px (celular)
 assets/slides-t/     miniaturas
 assets/mural/        páginas do mural antigo e novo
 assets/audio/        exemplos de testemunhal BTN
+assets/video/        vídeo de exemplo de merchandising
 assets/brand/        logos UORT e LOOK
 assets/pages/        páginas inteiras exibidas com rolagem (landing page)
 servidor.ps1         servidor local em PowerShell
